@@ -1,6 +1,7 @@
 
 import Filter from "@/components/Filter";
 import ProductList from "@/components/ProductList";
+import Skeleton from "@/components/Skeleton";
 // import Skeleton from "@/components/Skeleton";
 // import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
@@ -34,14 +35,14 @@ const ListPage = async () => {
       <Filter />
       {/* PRODUCTS */}
       <h1 className="mt-12 text-xl font-semibold">Products For You!</h1>
-      {/* <Suspense fallback={<Skeleton/>}> */}
+      <Suspense fallback={<Skeleton/>}>
         <ProductList
           // categoryId={
           //   cat.collection?._id || "00000000-000000-000000-000000000001"
           // }
           // searchParams={searchParams}
         />
-      {/* </Suspense> */}
+      </Suspense>
     </div>
   );
 };
