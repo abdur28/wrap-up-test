@@ -6,7 +6,7 @@ import ProductList from "@/components/ProductList";
 import Image from "next/image";
 import { Suspense } from "react";
 
-const ListPage = async ({ searchParams }: { searchParams: any }) => {
+const ListPage = async () => {
   // const wixClient = await wixClientServer();
 
   // const cat = await wixClient.collections.getCollectionBySlug(
@@ -39,7 +39,7 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
           // categoryId={
           //   cat.collection?._id || "00000000-000000-000000-000000000001"
           // }
-          searchParams={searchParams}
+          // searchParams={searchParams}
         />
       {/* </Suspense> */}
     </div>

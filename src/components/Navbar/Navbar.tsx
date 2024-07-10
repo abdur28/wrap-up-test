@@ -25,7 +25,7 @@ const Navbar = () => {
                         <div className="tracking-wide">Wrap Up</div>
                     </Link>
                     <Link href="/products">Sevices</Link>
-                    <Link href="/products">Shop</Link>
+                    <Link href="/products">Products</Link>
                     {/* <Link href="/">Deals</Link> */}
                     <Link href="/">About</Link>
                     <Link href="/">Contact</Link>

@@ -28,7 +28,7 @@ const itemVariants = {
 
 const Links = () => {
   const location = usePathname();
-  const items = ["Homepage", "Shop", "Deals", "About", "Contact"];
+  const items = ["Services", "Products", "About", "Contact"];
 
   return (
     <motion.div className="links" variants={variants}>
