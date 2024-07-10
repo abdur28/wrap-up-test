@@ -31,7 +31,9 @@ const ListPage = async () => {
         </div>
       </div>
       {/* FILTER */}
-      <Filter />
+      <Suspense fallback={<Skeleton/>}>
+        <Filter />
+      </Suspense>
       {/* PRODUCTS */}
       <h1 className="mt-12 text-xl font-semibold">Products For You!</h1>
       <Suspense fallback={<Skeleton/>}>
