@@ -36,7 +36,7 @@ const Services = () => {
             </div>
             <div className="flex md:flex-row flex-col mt-20">
                 <div className="flex flex-col md:w-1/2 px-16 pt-7">
-                    <h1 className="md:text-4xl md:text-left text-2xl text-center font-Satoshi font-semibold">It's easy as 1,2,3!</h1>
+                    <h1 className="md:text-4xl md:text-left text-2xl text-center font-Satoshi font-semibold">It&rsquo;s easy as 1,2,3!</h1>
                     <p className="md:text-md text-sm text-center md:text-left font-Satoshi mt-5 mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis harum ad at alias iure nostrum molestiae, sed repellendus. Reprehenderit quae quaerat nisi necessitatib</p>
                     <div className="flex flex-col mt-10 gap-5">
                         <div className="flex flex-row gap-5">

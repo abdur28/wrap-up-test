@@ -19,7 +19,7 @@ const Testimonials = () => {
                     Testimonials
                 </div>
                 <div className="md:text-4xl text-lg text-center font-Satoshi md:w-[500px] w-[350px] pt-10">
-                    There's a reason people are &nbsp;
+                    There&rsquo;s a reason people are &nbsp;
                     <span className="font-Tangerine md:text-6xl text-4xl">ravivg</span>&nbsp; about us.
                 </div>
                 <ReviewCarousel >
