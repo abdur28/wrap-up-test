@@ -4,7 +4,7 @@ const ReviewCard = () => {
     return (
         <div className="flex flex-col w-[300px] h-[200px] rounded-2xl border-2 p-4 gap-6">
             <div className="flex">
-                <p className="text-sm font-Satoshi">"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia tempora recusandae aut similique totam eum rerum sapiente. Consectetur qui mollitia."</p>
+                <p className="text-sm font-Satoshi">&quot;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia tempora recusandae aut similique totam eum rerum sapiente. Consectetur qui mollitia.&quot;</p>
             </div>
             <div className="flex flex-row gap-4">
                 <Image 
