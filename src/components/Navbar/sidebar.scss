@@ -1,0 +1,95 @@
+
+
+@mixin mobile {
+  @media (max-width: 738px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (max-width: 1366px) {
+    @content;
+  }
+}
+
+
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  
+  .bg {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 380px;
+    background: white;
+
+    @include mobile {
+      width: 260px;
+    }
+    @include tablet() {
+      width: 260px;
+    }
+
+    .links {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+
+      a {
+        font-size: 40px;
+
+        @include mobile {
+          font-size: 20px;
+        }
+        @include tablet {
+          font-size: 20px;
+        }
+      }
+      .sub-link{
+        font-size: 20px;
+
+        @include mobile {
+          font-size: 14px;
+        }
+        @include tablet {
+          font-size: 14px;
+        }
+      }
+    }
+  
+  }
+
+  button {
+    z-index: 999;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 25px;
+    right: 25px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .svg{
+    margin-top: 1px;
+    margin-left: 10px;
+  }
+}

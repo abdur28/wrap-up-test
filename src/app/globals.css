@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-secondary;
+    width: 100vw;
+    overflow-x: hidden;
+}
