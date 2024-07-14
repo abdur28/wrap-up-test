@@ -6,26 +6,31 @@ import Marquee from "./magicui/marquee";
 const Services = () => {
     const services = [
         {
+            id: 1,
             name: "Body Shape Consultation",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
         {
+            id: 2,
             name: "Color Consultation",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
         {
+            id: 3,
             name: "Wardrobe Analysis",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
         {
+            id: 4,
             name: "Public Figure Consultation",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
         {
+            id: 5,
             name: "Photoshoot",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"

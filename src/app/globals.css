@@ -65,7 +65,7 @@
     }
     body {
       overflow-x: hidden;
-      @apply bg-secondary;
+      @apply bg-primary;
     }
   }
 
@@ -157,5 +157,4 @@
     right: 15%;
     animation-delay: .3s;
   }
-  
   

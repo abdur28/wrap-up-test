@@ -11,26 +11,31 @@ import Canvas from "@/components/Canvas";
 const WrapUp = () => {
     const services = [
         {
+            id: 1,
             name: "Body Shape Consultation",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
         {
+            id: 2,
             name: "Color Consultation",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
         {
+            id: 3,
             name: "Wardrobe Analysis",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
         {
+            id: 4,
             name: "Public Figure Consultation",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         },
         {
+            id: 5,
             name: "Photoshoot",
             description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
             image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -65,7 +70,7 @@ const WrapUp = () => {
                 </div>    
             </div>
             <HowItWorks/>
-            <div className="overflow-hidden flex flex-col gap-20 px-20">
+            <div className="overflow-hidden flex flex-col gap-20 md:px-20 justify-center items-center">
                 <div className="flex w-full justify-center items-center">
                     <div className="rounded-2xl border-2 w-20 h-8 text-sm flex justify-center items-center">
                         Services

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 interface CardProps {
   service: {
+    id: number;
     name: string;
     description: string;
     image: string;
@@ -16,7 +17,7 @@ const ServiceCard: React.FC<CardProps> = ({ service }) => {
   const router = useRouter();
   return (
     <div className="card flex flex-col bg-secondary"
-    onClick={() => router.push(`/wrapup/${service?.name}`)}>
+    onClick={() => router.push(`/services/${service?.id}`)}>
         <div className="flex h-1/2">
           <Image
             src='/background.jpg'

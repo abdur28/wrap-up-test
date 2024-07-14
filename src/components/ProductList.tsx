@@ -45,7 +45,7 @@ const ProductList = async () => {
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
       {items.map((product) => (
         <Link
-          href={"/products/" + product.slug}
+          href={"/wrapup/" + product.slug}
           className="w-full px-10 md:px-0 flex flex-col gap-4 sm:w-[45%] lg:w-[22%]"
           key={product.slug}
         >
