@@ -28,7 +28,7 @@ const ServiceCard: React.FC<CardProps> = ({ service }) => {
    
         </div>
 
-      <div className="text flex flex-col justify-between p-6">
+      <div className="service-text flex flex-col justify-between p-6">
           <p className="h3"> {service?.name} </p>
           <p className="p">{service?.description}</p>
         <div className="flex justify-end items-end ">
