@@ -21,7 +21,7 @@ const SingleFaq = ({ faqs }: { faqs: { question: string, answer: string } }) => 
 
   return (
     <motion.div
-      className="flex flex-col p-3 md:w-[650px] w-[80%]  rounded-lg border-2"
+      className="flex flex-col p-3 md:w-[650px] w-[80%] border-gray-700 rounded-lg border-2"
       onClick={() => setOpen(!open)}
       animate={open ? "open" : "closed"}
       initial="closed"

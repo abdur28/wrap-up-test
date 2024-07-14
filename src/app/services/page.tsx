@@ -1,9 +1,14 @@
 import Image from "next/image";
-import InfiniteCarousel from "./InfiniteCarousel"
-import ServiceCard from "./ServiceCard"
-import Marquee from "./magicui/marquee";
+import BlurredText from "@/components/BlurredText";
+import HowItWorks from "@/components/HowItWorks";
+import { Suspense } from "react";
+import Skeleton from "@/components/Skeleton";
+import Filter from "@/components/Filter";
+import ServiceCard from "@/components/ServiceCard";
+import Canvas from "@/components/Canvas";
 
-const Services = () => {
+
+const WrapUp = () => {
     const services = [
         {
             name: "Body Shape Consultation",
@@ -32,14 +37,16 @@ const Services = () => {
         }
     ]
 
-    return (
-        <div className="md:h-[calc(220vh-0px)]  ">
-            <div className="flex  items-center flex-col ">
-                {/* <div className="rounded-2xl border-2 w-20 h-8 text-sm flex justify-center items-center">
-                    Services
-                </div> */}
+    return(
+        <div className="w-screen overflow-hidden">
+            
+            <div className=" h-[calc(50vh-0px)]  md:h-[calc(70vh-0px)] w-screen overflow-hidden ">
+            <   div className="absolute top-0 left-0 w-full md:h-full h-[45vh] z-[-1] ">
+                    <div className="absolute top-0 left-0 w-full h-full z-10 bg-transparent backdrop-blur-[4px] "></div>
+                    <Image src="/bg-clothes.png" alt="hero" layout="fill" objectFit="cover" />
+                </div>
                 <div className="flex w-full h-full items-center justify-center">
-                    <div className="flex flex-row">
+                    <div className="flex flex-col ">
                             <Image
                                 src="/mimi-logo.png"
                                 alt="Styles by Mimi"
@@ -47,29 +54,32 @@ const Services = () => {
                                 height={1000}
                                 className="object-contain lg:w-[500px] md:w-[400px] w-[300px]"
                             />
+                            
+                            {/* <p className="absolute right-[35%] md:right-[40%] lg:right-[50%] lg:top-[57%] text-3xl font-Great_Vibes">Styles by Mimi Mazamaza</p> */}
                     </div>
                 </div>
-                
-                <div className="lg:text-lg md:text-md text-sm text-center lg:w-[500px] md:w-[400px] w-[300px] ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam officia doloribus, deserunt tenetur id sit, 
-                </div>
-               
-                <div className="relative flex  w-[80%] my-48 flex-col items-center justify-center overflow-hidden  ">
-                        <Marquee pauseOnHover className="[--duration:25s] [--gap:2rem] ">
-                            {services.map((service, idx) => (
-                                <ServiceCard key={idx} service={service} />
-                            ))}
-                        </Marquee>
-                        {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-primary dark:from-background"></div>
-                        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-primary dark:from-background"></div> */}
-                </div>
-                
-                
             </div>
-            
+            <div className="h-[calc(50vh-0px)] md:h-[calc(100vh-0px)] w-screen overflow-hidden ">
+                <div className="flex h-full items-center justify-center">
+                    <BlurredText text='Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum sint at porro animi quos repellat molestias ea mollitia iusto, quia nulla reprehenderit omnis? Possimus officia quia praesentium, voluptate odit ad?' />
+                </div>    
+            </div>
+            <HowItWorks/>
+            <div className="overflow-hidden flex flex-col gap-20 px-20">
+                <div className="flex w-full justify-center items-center">
+                    <div className="rounded-2xl border-2 w-20 h-8 text-sm flex justify-center items-center">
+                        Services
+                    </div>
+                </div>
+                <div className="flex flex-col sm:flex-col md:flex-row gap-20 md:flex-wrap justify-center">
+                    {services.map((service, index) => (
+                        <ServiceCard service={service} key={index}/>
+                    ))}
+                </div>
+            </div>
+
         </div>
-        
     )
 }
 
-export default Services
+export default WrapUp;

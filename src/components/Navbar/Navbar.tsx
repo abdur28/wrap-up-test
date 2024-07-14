@@ -22,13 +22,13 @@ const Navbar = () => {
                 <div className="flex gap-6 py-4 px-5 font-Satoshi font-normal text-sm bg-white/30 backdrop-blur-lg rounded-xl border">
                     <Link href="/" className="flex items-center gap-3">
                         <Image src="/logo.png" alt="" width={18} height={18} />
-                        <div className="tracking-wide">Wrap Up</div>
+                        
                     </Link>
-                    <Link href="/products">Sevices</Link>
-                    <Link href="/products">Products</Link>
+                    <Link href={'/wrapup'} >Wrap Up</Link>
+                    <Link href="/services"  >Sevices</Link>
                     {/* <Link href="/">Deals</Link> */}
-                    <Link href="/">About</Link>
-                    <Link href="/">Contact</Link>
+                    <Link href="/about">About</Link>
+                    <Link href="/contact">Contact</Link>
                     <NavIcons />
                 </div>
             </div>

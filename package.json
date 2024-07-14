@@ -9,13 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "framer-motion": "^11.2.13",
+    "@lottiefiles/dotlottie-react": "^0.7.2",
+    "@react-spring/three": "^9.7.3",
+    "@react-three/drei": "^9.108.3",
+    "@react-three/fiber": "^8.16.8",
+    "@types/three": "^0.166.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.3.2",
+    "lottie-react": "^2.4.0",
+    "lottie-web": "^5.12.2",
+    "lucide-react": "^0.408.0",
     "next": "14.2.2",
+    "nodemailer": "^6.9.14",
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.10.3",
+    "react-lottie": "^1.2.4",
     "react-use-measure": "^2.1.1",
-    "sass": "^1.77.6"
+    "sass": "^1.77.6",
+    "shadergradient": "^1.2.14",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.166.1"
   },
   "devDependencies": {
     "@types/node": "^20",

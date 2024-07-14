@@ -46,7 +46,7 @@ const ProductList = async () => {
       {items.map((product) => (
         <Link
           href={"/products/" + product.slug}
-          className="w-full flex flex-col gap-4 sm:w-[45%] lg:w-[22%]"
+          className="w-full px-10 md:px-0 flex flex-col gap-4 sm:w-[45%] lg:w-[22%]"
           key={product.slug}
         >
           <div className="relative w-full h-80">
@@ -85,7 +85,7 @@ const ProductList = async () => {
               {product.description}
             </div>
           
-          <button className="rounded-2xl ring-1 ring-primary text-primary w-max py-2 px-4 text-xs hover:bg-primary hover:text-white">
+          <button className="rounded-2xl ring-1 ring-black text-black w-max py-2 px-4 text-xs hover:bg-primary hover:text-white">
             Add to Cart
           </button>
         </Link>

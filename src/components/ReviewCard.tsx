@@ -1,8 +1,9 @@
 import Image from "next/image"
 
 const ReviewCard = () => {
+    
     return (
-        <div className="flex flex-col w-[300px] h-[200px] rounded-2xl border-2 p-4 gap-6">
+        <div className="flex flex-col w-[300px] h-[200px] rounded-2xl border-2 border-gray-700 p-4 gap-6">
             <div className="flex">
                 <p className="text-sm font-Satoshi">&quot;Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia tempora recusandae aut similique totam eum rerum sapiente. Consectetur qui mollitia.&quot;</p>
             </div>

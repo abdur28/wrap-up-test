@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const variants = {
@@ -26,22 +27,34 @@ const itemVariants = {
   },
 };
 
-const Links = () => {
+const Links = ({ setOpen }: { setOpen: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const location = usePathname();
-  const items = ["Services", "Products", "About", "Contact"];
+  const items = [ "Services", "About", "Contact"];
 
   return (
     <motion.div className="links" variants={variants}>
+
+      <Link href='/wrapup' >
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setOpen(false)}
+          >
+            Wrap Up
+          </motion.div>
+        </Link>
       {items.map((item) => (
-        <motion.a
-          href={`/${item.toLowerCase()}`}
-          key={item}
-          variants={itemVariants}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {item}
-        </motion.a>
+        <Link href={`/${item.toLowerCase()}`} key={item}>
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setOpen(false)}
+          >
+            {item}
+          </motion.div>
+        </Link>
       ))}
     </motion.div>
   );

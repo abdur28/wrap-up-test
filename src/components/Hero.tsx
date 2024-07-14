@@ -2,14 +2,14 @@ import Image from "next/image";
 
 const Hero = () => {
     return (
-        <div className=" h-[calc(100vh-0px)] w-screen overflow-hidden ">
+        <div className=" md:h-[calc(100vh-0px)] h-[50vh] w-screen overflow-hidden ">
             <div className="absolute top-0 left-0 w-full h-full z-[-1] ">
-                <div className="absolute top-0 left-0 w-full h-full z-10 bg-gradient-to-b from-transparent to-secondary"></div>
-                    <Image src="/background.jpg" alt="hero" layout="fill" objectFit="cover" />
+                <div className="absolute top-0 left-0 w-full h-full z-10 "></div>
+                    <Image src="/bg-hero.png" alt="hero" layout="fill" objectFit="cover" />
                 </div>
             <div className="flex w-full h-full md:pt-10 pt-36 items-center flex-col ">
                 <div className="flex justify-center items-center">
-                    <h1 className="text-black md:text-[150px] text-7xl font-bold font-Tangerine">Wrap Up</h1> 
+                    <h1 className="text-black md:text-[150px] text-7xl font-bold font-Tangerine">Style Savant</h1> 
                 </div>
                 <div className="md:w-[500px] w-[300px] text-center">
                     <p className="text-black md:text-2xl  font-Satoshi italic">Breaking boundaries with timeless style and innovation.</p>
