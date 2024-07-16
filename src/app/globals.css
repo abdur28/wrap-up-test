@@ -76,11 +76,11 @@
   }
 
   /* CSS Reset */
-  * {
+  /* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+  } */
 
 /* Target iOS Devices */
   @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-device-width: 320px) and (max-device-width: 1024px) {
