@@ -1,18 +1,12 @@
 
 import Filter from "@/components/Filter";
-import Hero from "@/components/Hero";
 import ProductList from "@/components/ProductList";
 import Skeleton from "@/components/Skeleton";
-// import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
 import { Suspense } from "react";
 
-const ListPage = async () => {
-  // const wixClient = await wixClientServer();
-
-  // const cat = await wixClient.collections.getCollectionBySlug(
-  //   searchParams.cat || "all-products"
-  // );
+const WrapUpPage = async ({searchParams}: {searchParams?: any}) => {
+  // const products = await createProduct();
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative">
@@ -47,10 +41,10 @@ const ListPage = async () => {
       {/* PRODUCTS */}
       <h1 className="mt-12 text-xl font-semibold">Products For You!</h1>
       <Suspense fallback={<Skeleton/>}>
-        <ProductList/>
+        <ProductList searchParams={searchParams}/>
       </Suspense>
     </div>
   );
 };
 
-export default ListPage;
+export default WrapUpPage;

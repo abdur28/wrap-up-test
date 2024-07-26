@@ -9,7 +9,7 @@ import * as fiber from '@react-three/fiber'
 const Canvas = () => {
   return (
     <ShaderGradientCanvas
-      importedFiber={{ ...fiber, ...drei, ...reactSpring }}
+      importedfiber={{ ...fiber, ...drei, ...reactSpring }}
       style={{
         position: 'fixed',
         top: 0,

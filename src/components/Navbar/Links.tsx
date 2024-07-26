@@ -27,13 +27,34 @@ const itemVariants = {
   },
 };
 
-const Links = ({ setOpen }: { setOpen: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const Links = ({ setOpen, admin }: { setOpen: React.Dispatch<React.SetStateAction<boolean>>, admin: boolean }) => {
   const location = usePathname();
-  const items = [ "Services", "About", "Contact"];
+  const items = [ "Services", "Contact"];
 
   return (
     <motion.div className="links" variants={variants}>
-
+      <Link href='/' >
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setOpen(false)}
+          >
+          Home
+          </motion.div>
+        </Link>
+        {admin && (
+        <Link href="/admin">
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setOpen(false)}
+          >
+            Admin
+          </motion.div>
+        </Link>
+      )}
       <Link href='/wrapup' >
           <motion.div
             variants={itemVariants}
@@ -56,6 +77,8 @@ const Links = ({ setOpen }: { setOpen: React.Dispatch<React.SetStateAction<boole
           </motion.div>
         </Link>
       ))}
+
+      
     </motion.div>
   );
 };

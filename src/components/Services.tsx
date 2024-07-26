@@ -2,40 +2,11 @@ import Image from "next/image";
 import InfiniteCarousel from "./InfiniteCarousel"
 import ServiceCard from "./ServiceCard"
 import Marquee from "./magicui/marquee";
+import { getServices } from "@/lib/data";
 
-const Services = () => {
-    const services = [
-        {
-            id: 1,
-            name: "Body Shape Consultation",
-            description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
-            image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        },
-        {
-            id: 2,
-            name: "Color Consultation",
-            description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
-            image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        },
-        {
-            id: 3,
-            name: "Wardrobe Analysis",
-            description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
-            image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        },
-        {
-            id: 4,
-            name: "Public Figure Consultation",
-            description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
-            image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        },
-        {
-            id: 5,
-            name: "Photoshoot",
-            description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa minus nemo! Sed quisquam fuga amet repellendus ea deleniti atque consequatur dolorem dignissimos expedita!",
-            image: "https://images.pexels.com/photos/322548/pexels-photo-322548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        }
-    ]
+const Services = async ({ homeText }: { homeText: string }) => {
+
+    const services = await getServices();
 
     return (
         <div className="md:h-[calc(220vh-0px)]  ">
@@ -56,13 +27,13 @@ const Services = () => {
                 </div>
                 
                 <div className="lg:text-lg md:text-md text-sm text-center lg:w-[500px] md:w-[400px] w-[300px] ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam officia doloribus, deserunt tenetur id sit, 
+                   {homeText}
                 </div>
                
-                <div className="relative flex  w-[80%] my-48 flex-col items-center justify-center overflow-hidden  ">
+                <div className="relative flex  w-[80%] my-48  flex-col items-center justify-center overflow-hidden  ">
                         <Marquee pauseOnHover className="[--duration:25s] [--gap:2rem] ">
                             {services.map((service, idx) => (
-                                <ServiceCard key={idx} service={service} />
+                                <ServiceCard key={idx} name={service.name} image={service.images[0]} shortDescription={service.shortDescription} price={service.price} id={service._id.toString()} />
                             ))}
                         </Marquee>
                         {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-primary dark:from-background"></div>

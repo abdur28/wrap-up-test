@@ -1,57 +1,61 @@
-
+import { getProducts } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import Pagination from "./Pagination";
 
+const  ProductList = async ({featured = false, searchParams}: {featured?: boolean, searchParams?: any}) => {
+  const PRODUCT_PER_PAGE = 8;
+  let products = [];
+  let totalPages = 0;
+  const page = parseInt(searchParams?.page) || 1;
+  const min = searchParams?.min || 0;
+  const max = searchParams?.max || Infinity;
+  const sort = searchParams?.sort || "";
 
-const PRODUCT_PER_PAGE = 8;
+  if (featured) {
+    const allProducts = await getProducts();
+    const featuredProduct = allProducts.filter((product: any) => product.featured);
+    products = featuredProduct.slice(0, 4);
+  } else {
+    products = await getProducts();
+    totalPages = Math.ceil(products.length / PRODUCT_PER_PAGE);
 
-const ProductList = async () => {
-
-
-  const items = [
-    {
-      name: "Product 1",
-      price: "40",
-      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFnfGVufDB8fDB8fHww",
-      slug: "product-1",
-      description: "This is the first product",
-    },
-    {
-      name: "Product 2",
-      price: "50",
-      image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c2hvZXN8ZW58MHx8MHx8fDA%3D",
-      slug: "product-2",
-      description: "This is the second product",
-    },
-    {
-      name: "Product 3",
-      price: "60",
-      image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hpcnR8ZW58MHx8MHx8fDA%3D",
-      slug: "product-3",
-      description: "This is the third product",
-    }, 
-    {
-      name: "Product 4",
-      price: "70",
-      image: "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmFzZXxlbnwwfHwwfHx8MA%3D%3D",
-      slug: "product-4",
-      description: "This is the fourth product",
+    switch (sort) {
+      case "asc price":
+        products.sort((a: any, b: any) => a.products[0].price - b.products[0].price);
+        break;
+      case "desc price":
+        products.sort((a: any, b: any) => b.products[0].price - a.products[0].price);
+        break;
+      case "asc lastUpdated":
+        products.sort((a: any, b: any) => new Date(a.arrivedAt).getTime() - new Date(b.arrivedAt).getTime());
+        break;
+      case "desc lastUpdated":
+        products.sort((a: any, b: any) => new Date(b.arrivedAt).getTime() - new Date(a.arrivedAt).getTime());
+        break;
+      default:
+        break;
     }
-  ]
+    products = products
+    .filter((product: any) => product.products[0].price >= min && product.products[0].price <= max)
+    .slice((page - 1) * PRODUCT_PER_PAGE, page * PRODUCT_PER_PAGE);
+  }
 
   
 
+
+  
   return (
-    <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
-      {items.map((product) => (
+    <div className="mt-12 flex gap-x-8 gap-y-16 flex-wrap cursor-pointer">
+      {products.map((product: any) => (
         <Link
-          href={"/wrapup/" + product.slug}
-          className="w-full px-10 md:px-0 flex flex-col gap-4 sm:w-[45%] lg:w-[22%]"
-          key={product.slug}
+          href={"/wrapup/" + product._id.toString()}
+          className="w-full px-10 md:px-0 flex flex-col gap-4 sm:w-[45%] lg:w-[22%] cursor-pointer"
+          key={product.id}
         >
-          <div className="relative w-full h-80">
+          <div className="relative w-full aspect-square ">
             <Image
-              src={product.image || "/product.png"}
+              src={product.images[0] || "/image-placeholder.png"}
               alt=""
               fill
               sizes="25vw"
@@ -59,7 +63,7 @@ const ProductList = async () => {
             />
             
               <Image
-                src="/product.png"
+                src={product.images[1] || "/image-placeholder.png"}
                 alt=""
                 fill
                 sizes="25vw"
@@ -69,30 +73,31 @@ const ProductList = async () => {
           </div>
           <div className="flex justify-between">
             <span className="font-medium">{product.name}</span>
-            <span className="font-semibold">${product.price}</span>
+            <span className="font-semibold">₦ {product.products[0].price || 0}</span>
           </div>
          
             <div
               className="text-sm text-gray-500"
-              // dangerouslySetInnerHTML={{
-              //   __html: DOMPurify.sanitize(
-              //     product.additionalInfoSections.find(
-              //       (section: any) => section.title === "shortDesc"
-              //     )?.description || ""
-              //   ),
-              // }}
             >
-              {product.description}
+              {product.shortDescription?.length > 70 ? `${product.shortDescription?.slice(0, 70)} ...` : product.shortDescription}
             </div>
-          
-          <button className="rounded-2xl ring-1 ring-black text-black w-max py-2 px-4 text-xs hover:bg-primary hover:text-white">
+        
+          <button className="rounded-2xl ring-1 ring-black text-black w-max py-2 px-4 text-xs hover:bg-primary hover:text-white"
+          >
             Add to Cart
           </button>
         </Link>
       ))}
-      
+      { !featured ? (
+          <Pagination
+            currentPage={page}
+            hasPrev={(page > 1)}
+            hasNext={(page < totalPages)}
+          />
+        ) : null}
     </div>
   );
 };
 
 export default ProductList;
+

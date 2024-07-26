@@ -1,6 +1,6 @@
 import ProductList from "./ProductList"
 
-const FeaturedProducts = () => {
+const FeaturedProducts = ({homeText}: {homeText: string}) => {
 
     return (    
         <div className="mt-24 mb-40 ">
@@ -14,11 +14,14 @@ const FeaturedProducts = () => {
             </div>
             <div className="flex px-16  items-center flex-col">
                 <p className="md:text-lg text-sm  pb-20 font-Satoshi text-center md:w-[700px] w-[350px]"> 
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere eum corporis vitae expedita nobis voluptatibus rem, dolorem at excepturi
+                    {homeText}
                 </p>
             </div>
             
-            <ProductList/>
+            <div className="md:px-16">
+                <ProductList featured={true}/>
+            </div>
+            
         </div>
     )
 }

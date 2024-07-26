@@ -6,44 +6,26 @@ import ProductList from "@/components/ProductList"
 import Services from "@/components/Services"
 import SingleFaq from "@/components/SIngleFaq"
 import Testimonials from "@/components/Testimonials"
+import { getApprovedReviews, getInformation } from "@/lib/data"
 import Image from "next/image"
 
-const HomePage = () => {
-  const faqs = [
-    {
-      question: "What is Wrap Up?",
-      answer: "Wrap Up is a platform that offers a range of services, including styling, makeup, hair, and makeup. "
-    },
-    {
-      question: "How can I use Wrap Up?",
-      answer: "Wrap Up is a platform that offers a range of services, including styling, makeup, hair, and makeup. "
-    }, 
-    {
-      question: "What is Wrap Up?",
-      answer: "Wrap Up is a platform that offers a range of services, including styling, makeup, hair, and makeup. "
-    },
-    {
-      question: "What is Wrap Up?",
-      answer: "Wrap Up is a platform that offers a range of services, including styling, makeup, hair, and makeup. "
-    },
-    {
-      question: "What is Wrap Up?",
-      answer: "Wrap Up is a platform that offers a range of services, including styling, makeup, hair, and makeup. "
-    }
+const HomePage = async () => {
+  const info = await getInformation()
+  const approvedReviews = await getApprovedReviews()
+  const reviews = JSON.stringify(approvedReviews)
 
-  ]
   return (
     <div className='w-screen overflow-hidden'>
       {/* <Canvas /> */}
       <Hero />
       <div className="md:h-[calc(100vh-0px)] h-[70vh] flex justify-center items-center flex-col">
-        <BlurredText text="At Wrap Up, we redefine elegance and sophistication. Our mission is to elevate your brand through exquisite styling and meticulous attention to detail. Step into a world where style meets substance, and watch your brand transform to new heights." />
-        <button className="mt-10 rounded-2xl ring-1 ring-black text-black w-max py-2 px-4 text-lg hover:bg-primary hover:text-white">
+        <BlurredText text={info.styleSavantHomeText} />
+        {/* <button className="mt-10 rounded-2xl ring-1 ring-black text-black w-max py-2 px-4 text-lg hover:bg-primary hover:text-white">
             More
-        </button>
+        </button> */}
       </div>  
-      <Services />
-      <FeaturedProducts />
+      <Services homeText={info.servicesHomeText}/>
+      <FeaturedProducts homeText={info.wrapUpHomeText}/>
             <div className="flex md:flex-row flex-col mt-20">
                 <div className="flex flex-col md:w-1/2 px-16 pt-7">
                     <h1 className="md:text-4xl md:text-left text-2xl text-center font-Satoshi font-semibold">It&rsquo;s easy as 1,2,3!</h1>
@@ -68,13 +50,13 @@ const HomePage = () => {
                     <Image src="/giphy.gif" alt="gif" unoptimized width={500} height={500} />
                 </div>
             </div>
-      <Testimonials />
+      <Testimonials reviewsAsString={reviews}/>
       <div className=" mt-10 flex flex-col  items-center">
         <div className="rounded-2xl border-2 border-gray-700 w-20 h-8 text-sm flex justify-center items-center">
             FAQS
         </div>
         <div className="flex flex-col items-center gap-5 mt-10">
-          {faqs.map((faq, idx) => (
+          {info.faqs.map((faq: any, idx: number) => (
             <SingleFaq key={idx} faqs={faq} />
           ))}
         </div>

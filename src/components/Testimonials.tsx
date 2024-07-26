@@ -8,20 +8,33 @@ import ReviewCarousel from "./ReviewCarousel";
 import Marquee from "./magicui/marquee";
 import { useEffect, useState } from "react";
 
-const Testimonials = () => {
+const Testimonials = ({ reviewsAsString }: { reviewsAsString: string }) => {
+    const reviews = JSON.parse(reviewsAsString);
     const [smallSize, setSmallSize] = useState(false);
+    const [mediumSize, setMediumSize] = useState(false);
+    const [firstLine, setFirstLine] = useState<any>([]);
+    const [secondLine, setSecondLine] = useState<any>([]);
+    const [thirdLine, setThirdLine] = useState<any>([]);
 
-    const images = [
-        "/image-1.jpg",
-        "/image-2.jpg",
-        "/image-3.jpg",
-        "/image-4.jpg",
-        
-    ];
+
 
     useEffect(() => {
         const handleResize = () => {
             setSmallSize(window.innerWidth < 768);
+            setMediumSize(window.innerWidth < 1024);
+
+            if (smallSize) {
+                setFirstLine(reviews);
+            } else if (mediumSize) {
+                const numberOfReviews = Math.ceil(reviews.length / 2);
+                setFirstLine(reviews.slice(0, numberOfReviews));
+                setSecondLine(reviews.slice(numberOfReviews, reviews.length));
+            } else {
+                const numberOfReviews = Math.ceil(reviews.length / 3);
+                setFirstLine(reviews.slice(0, numberOfReviews));
+                setSecondLine(reviews.slice(numberOfReviews, numberOfReviews * 2));
+                setThirdLine(reviews.slice(numberOfReviews * 2, reviews.length));
+            }
         };
 
         handleResize(); // Initial check
@@ -46,29 +59,29 @@ const Testimonials = () => {
                     <Marquee
                         pauseOnHover
                         vertical={!smallSize}
-                        className="[--duration:30s] [--gap:1rem]"
+                        className={`[--duration:60s] [--gap:1rem]`}
                     >
-                        {[...images, ...images].map((item, idx) => (
-                            <ReviewCard key={idx} />
+                        {[...firstLine, ...firstLine].map((review, idx) => (
+                            <ReviewCard key={idx} rating={review.rating} comment={review.comment} name={review.name} profilePicture={review.profilePicture} product={review.product} />
                         ))}
                     </Marquee>
                     <Marquee
                         pauseOnHover
                         vertical={true}
                         reverse={true}
-                        className="[--duration:40s] [--gap:1rem] hidden md:flex"
+                        className="[--duration:50s] [--gap:1rem] hidden md:flex"
                     >
-                        {[...images, ...images].map((item, idx) => (
-                            <ReviewCard key={idx} />
+                        {[...secondLine, ...secondLine].map((review, idx) => (
+                            <ReviewCard key={idx} rating={review.rating} comment={review.comment} name={review.name} profilePicture={review.profilePicture} product={review.product}/>
                         ))}
                     </Marquee>
                     <Marquee
                         pauseOnHover
                         vertical={true}
-                        className="[--duration:35s] [--gap:1rem] hidden lg:flex"
+                        className="[--duration:45s] [--gap:1rem] hidden lg:flex"
                     >
-                        {[...images, ...images].map((item, idx) => (
-                            <ReviewCard key={idx} />
+                        {[...thirdLine, ...thirdLine].map((review, idx) => (
+                            <ReviewCard key={idx} rating={review.rating} comment={review.comment} name={review.name} profilePicture={review.profilePicture} product={review.product}/>
                         ))}
                     </Marquee>
                     {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-secondary dark:from-background"></div>

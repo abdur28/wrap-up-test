@@ -5,23 +5,22 @@ import "./serviceCard.scss";
 import { useRouter } from "next/navigation";
 
 interface CardProps {
-  service: {
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-  }
+  name: string;
+  image: string;
+  shortDescription: string;
+  price: number;
+  id: string;
 }
 
-const ServiceCard: React.FC<CardProps> = ({ service }) => {
+const ServiceCard: React.FC<CardProps> = ({ name, image, shortDescription, price, id }) => {
   const router = useRouter();
   return (
-    <div className="card flex flex-col bg-secondary"
-    onClick={() => router.push(`/services/${service?.id}`)}>
+    <div className="card  flex flex-col bg-secondary"
+    onClick={() => router.push(`/services/${id}`)}>
         <div className="flex h-1/2">
           <Image
-            src='/background.jpg'
-            alt={service?.name}
+            src={image || "/image-placeholder.png"}
+            alt={name}
             width={1000}
             height={1000}
             className="img"
@@ -30,12 +29,15 @@ const ServiceCard: React.FC<CardProps> = ({ service }) => {
         </div>
 
       <div className="service-text flex flex-col justify-between p-6">
-          <p className="h3"> {service?.name} </p>
-          <p className="p">{service?.description}</p>
-        <div className="flex justify-end items-end ">
-        <button className=" rounded-2xl ring-1 ring-black text-black w-max py-1 px-3  hover:bg-primary hover:text-white hover:ring-transparent">
-            Book
-        </button>
+          <p className="h3"> {name} </p>
+          <p className="p">{shortDescription.slice(0, 250)} ...</p>
+        <div className="flex justify-between items-end ">
+          <p className="h3">₦ {price}</p>
+          <button className=" rounded-2xl ring-1 ring-black text-black w-max py-1 px-3  hover:bg-primary hover:text-white hover:ring-transparent"
+          onClick={() => router.push(`/services/${id}`)}
+          >
+              Book
+          </button>
         </div>
         
       </div>

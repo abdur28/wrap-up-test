@@ -25,7 +25,7 @@ const variants = {
   },
 };
 
-const Sidebar = () => {
+const Sidebar = ({admin} = {admin: false}) => {
   const [open, setOpen] = useState(false);
 
   const clipPath = "circle(0px at 220px 50px)" // 220px is the width of the menu button
@@ -35,7 +35,7 @@ const Sidebar = () => {
   return (
     <motion.div className="sidebar" animate={open ? "open" : "closed"} initial="closed">
       <motion.div className="bg" animate={open ? "open" : "closed"} variants={variants}>
-        <Links setOpen={setOpen}/>
+        <Links admin={admin} setOpen={setOpen}/>
       </motion.div>
       <ToggleButton setOpen={setOpen} />
     </motion.div>

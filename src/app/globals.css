@@ -64,31 +64,19 @@
       @apply border-border;
     }
     body {
-      margin-top: 0 !important;
-      padding-top: 0 !important;
-      padding-top: env(safe-area-inset-top);
-      padding-left: env(safe-area-inset-left);
-      padding-right: env(safe-area-inset-right);
-      padding-bottom: env(safe-area-inset-bottom);
       overflow-x: hidden;
       @apply bg-primary;
     }
   }
 
-  /* CSS Reset */
-  /* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  } */
 
 /* Target iOS Devices */
-  @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-device-width: 320px) and (max-device-width: 1024px) {
-    body {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-    }
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-device-width: 320px) and (max-device-width: 1024px) {
+  body {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
   }
+}
 
 
   .wrapper {
@@ -178,5 +166,47 @@
     left: auto;
     right: 15%;
     animation-delay: .3s;
+  }
+  
+  .animate-wave {
+    animation-name: wave;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    transform-origin: 70% 70%;
+    display: inline-block;
+  }
+  
+  @keyframes wave {
+    0% {
+      transform: rotate( 0.0deg)
+    }
+  
+    10% {
+      transform: rotate(14.0deg)
+    }
+  
+    20% {
+      transform: rotate(-8.0deg)
+    }
+  
+    30% {
+      transform: rotate(14.0deg)
+    }
+  
+    40% {
+      transform: rotate(-4.0deg)
+    }
+  
+    50% {
+      transform: rotate(10.0deg)
+    }
+  
+    60% {
+      transform: rotate( 0.0deg)
+    }
+  
+    100% {
+      transform: rotate( 0.0deg)
+    }
   }
   

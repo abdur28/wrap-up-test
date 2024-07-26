@@ -1,147 +1,203 @@
 "use client";
 
-// import { products } from "@wix/stores";
+import { useCart } from "@/hooks/useCart";
+import { color } from "framer-motion";
 import { useEffect, useState } from "react";
 import Add from "./Add";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const CustomizeProducts = ({
-  // productId,
-  // variants,
-  // productOptions,
+  productId,
+  productImage,
+  productName,
+  colors,
+  sizes,
+  items,
 }: {
-  // productId: string;
-  // variants: products.Variant[];
-  // productOptions: products.ProductOption[];
+  productId: string;
+  productImage: string;
+  productName: string;
+  colors: string[];
+  sizes: string[];
+  items: any[];
 }) => {
-  // const [selectedOptions, setSelectedOptions] = useState<{
-  //   [key: string]: string;
-  // }>({});
-  // const [selectedVariant, setSelectedVariant] = useState<products.Variant>();
+  const { cart, getCart, getAvailableItems, availableItems } = useCart();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   const variant = variants.find((v) => {
-  //     const variantChoices = v.choices;
-  //     if (!variantChoices) return false;
-  //     return Object.entries(selectedOptions).every(
-  //       ([key, value]) => variantChoices[key] === value
-  //     );
-  //   });
-  //   setSelectedVariant(variant);
-  // }, [selectedOptions, variants]);
+  const [currentList, setCurrentList] = useState(items);
+  const [selectedColor, setSelectedColor] = useState(currentList[0]?.color);
+  const [selectedSize, setSelectedSize] = useState(currentList[0]?.size);
+  const [price, setPrice] = useState(currentList[0]?.price);
+  const [quantity, setQuantity] = useState(currentList[0]?.quantity);
+  const [itemId, setItemId] = useState(currentList[0]?.itemId);
+  const [count, setCount] = useState(1);
+  const [disabled, setDisabled] = useState(false);
 
-  // const handleOptionSelect = (optionType: string, choice: string) => {
-  //   setSelectedOptions((prev) => ({ ...prev, [optionType]: choice }));
-  // };
+  useEffect(() => {
+    const currentItem = currentList.find(
+      (item) => item.color === selectedColor && item.size === selectedSize
+    );
+    if (currentItem) {
+      setPrice(currentItem.price);
+      setQuantity(currentItem.quantity);
+      setItemId(currentItem.itemId);
+    }
+    if (currentList.find((item) => item.color === selectedColor)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+    setCount(1);
+  }, [selectedColor, selectedSize, getCart, cart]);
 
-  // const isVariantInStock = (choices: { [key: string]: string }) => {
-  //   return variants.some((variant) => {
-  //     const variantChoices = variant.choices;
-  //     if (!variantChoices) return false;
+  useEffect(() => {
+    getAvailableItems(productId); 
+    console.log(currentList);
+  }, []);
 
-  //     return (
-  //       Object.entries(choices).every(
-  //         ([key, value]) => variantChoices[key] === value
-  //       ) &&
-  //       variant.stock?.inStock &&
-  //       variant.stock?.quantity &&
-  //       variant.stock?.quantity > 0
-  //     );
-  //   });
-  // };
+  useEffect(() => {
+    setCurrentList(availableItems);
+    setSelectedColor(availableItems[0]?.color);
+    setSelectedSize(availableItems[0]?.size);
+    setPrice(availableItems[0]?.price);
+    setQuantity(availableItems[0]?.quantity);
+    setItemId(availableItems[0]?.itemId);
+    setCount(1);
+  }, [cart, availableItems]);
+
+  const handleQuantity = (type: "i" | "d") => {
+    if (type === "d" && count > 1) {
+      setCount((prev) => prev - 1);
+    }
+    if (type === "i" && count < quantity) {
+      setCount((prev) => prev + 1);
+    }
+  };
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* {productOptions.map((option) => (
-        <div className="flex flex-col gap-4" key={option.name}>
-          <h4 className="font-medium">Choose a {option.name}</h4>
-          <ul className="flex items-center gap-3">
-            {option.choices?.map((choice) => {
-              const disabled = !isVariantInStock({
-                ...selectedOptions,
-                [option.name!]: choice.description!,
-              });
-
-              const selected =
-                selectedOptions[option.name!] === choice.description;
-
-              const clickHandler = disabled
-                ? undefined
-                : () => handleOptionSelect(option.name!, choice.description!);
-
-              return option.name === "Color" ? (
-                <li
-                  className="w-8 h-8 rounded-full ring-1 ring-gray-300 relative"
-                  style={{
-                    backgroundColor: choice.value,
-                    cursor: disabled ? "not-allowed" : "pointer",
-                  }}
-                  onClick={clickHandler}
-                  key={choice.description}
+    <>
+    {currentList.length > 0 ? (
+      <>
+      <h2 className="font-medium text-2xl">₦ {price}</h2>
+      <div className="h-[2px] bg-gray-100" />
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
+          <h4 className="font-medium">Choose a Quantity</h4>
+          <div className="flex justify-between">
+            <div className="flex items-center gap-4">
+              <div className="bg-gray-100 py-2 px-4 rounded-3xl flex items-center justify-between w-32">
+                <button
+                  className="cursor-pointer text-xl disabled:cursor-not-allowed disabled:opacity-20"
+                  onClick={() => handleQuantity("d")}
+                  disabled={count === 1}
                 >
-                  {selected && (
-                    <div className="absolute w-10 h-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                  )}
-                  {disabled && (
-                    <div className="absolute w-10 h-[2px] bg-red-400 rotate-45 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                  )}
-                </li>
-              ) : (
-                <li
-                  className="ring-1 ring-lama text-lama rounded-md py-1 px-4 text-sm"
-                  style={{
-                    cursor: disabled ? "not-allowed" : "pointer",
-                    backgroundColor: selected
-                      ? "#f35c7a"
-                      : disabled
-                      ? "#FBCFE8"
-                      : "white",
-                    color: selected || disabled ? "white" : "#f35c7a",
-                    boxShadow: disabled ? "none" : "",
-                    
-                  }}
-                  key={choice.description}
-                  onClick={clickHandler}
+                  -
+                </button>
+                {count}
+                <button
+                  className="cursor-pointer text-xl disabled:cursor-not-allowed disabled:opacity-20"
+                  onClick={() => handleQuantity("i")}
+                  disabled={quantity === count}
                 >
-                  {choice.description}
-                </li>
-              );
-            })}
-          </ul>
+                  +
+                </button>
+              </div>
+              {quantity  && (
+                <div className="text-xs">
+                  Only{" "}
+                  <span className="text-orange-500">{quantity}</span> left!
+                  <br /> Don&apos;t miss it
+                </div>
+              )}
+            </div>
+            {!disabled && 
+              <Add
+              productId={productId}
+              productName={productName}
+              productImage={productImage}
+              itemId={itemId}
+              color={selectedColor}
+              size={selectedSize}
+              quantity={count}
+              price={price}
+            />
+            }
+            
+          </div>
         </div>
-      ))} */}
-      <Add
-        // productId={productId}
-        // variantId={
-        //   selectedVariant?._id || "00000000-0000-0000-0000-000000000000"
-        // }
-        // stockNumber={selectedVariant?.stock?.quantity || 0}
-      />
-      {/* COLOR */}
+        <h4 className="font-medium">Choose a color</h4>
+        <ul className="flex items-center gap-3">
+          {colors.map((color) => {
+            const isColorAvailable = currentList.some(
+              (item) => item.color === color 
+            );
+            return (
+              <li
+                key={color}
+                className={`w-8 h-8 rounded-full ring-1 ring-gray-300
+                  ${!isColorAvailable ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"}
+                  relative`}
+                style={{ backgroundColor: color }}
+                onClick={() => {
+                  if (isColorAvailable) {
+                    setSelectedColor(color);
+                  }
+                }}
+              >
+                {!isColorAvailable && (
+                  <div className="absolute w-12 h-[3px] bg-black rotate-45 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                )}
+                {selectedColor === color && (
+                  <div className="absolute w-10 h-10 rounded-full ring-black ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                )}
+              </li>
+            );
+          })}
+        </ul>
+        <h4 className="font-medium">Choose a size</h4>
+        <ul className="flex items-center gap-3">
+          {sizes.map((size) => {
+            const isSizeAvailable = currentList.some(
+              (item) => item.size === size && item.color === selectedColor
+            );
+            return (
+              <li
+                key={size}
+                className={`ring-1 ring-black text-black rounded-md py-1 px-4 text-sm cursor-pointer
+                  ${selectedSize === size ? "bg-black text-white" : ""}
+                  ${!isSizeAvailable ? "opacity-25 cursor-not-allowed" : "opacity-100 cursor-pointer"}`}
+                onClick={() => {
+                  if (isSizeAvailable) {
+                    setSelectedSize(size);
+                  }
+                }}
+              >
+                {size.toUpperCase()}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       
-          <ul className="flex items-center gap-3">
-            <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-red-500">
-              <div className="absolute w-10 h-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-            </li>
-            <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-blue-500"></li>
-            <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-not-allowed relative bg-green-500">
-              <div className="absolute w-10 h-[2px] bg-red-400 rotate-45 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-            </li>
-          </ul>
-      {/* OTHERS */}
-      <h4 className="font-medium">Choose a size</h4>
-      <ul className="flex items-center gap-3">
-        <li className="ring-1 ring-lama text-lama rounded-md py-1 px-4 text-sm cursor-pointer">
-          Small
-        </li>
-        <li className="ring-1 ring-lama text-white bg-lama rounded-md py-1 px-4 text-sm cursor-pointer">
-          Medium
-        </li>
-        <li className="ring-1 ring-pink-200 text-white bg-pink-200 rounded-md py-1 px-4 text-sm cursor-not-allowed">
-          Large
-        </li>
-      </ul>
-    </div>
+      </>
+      ): (
+        <>
+        <SignedIn>
+            <h3 className="text-center">Out of Stock</h3>
+        </SignedIn>
+        <SignedOut>
+            <button
+              onClick={() => {router.push("/sign-in")}}
+              className="hover:bg-primary border border-black hover:text-white px-6 py-2 rounded-2xl w-32"
+            >Add</button>
+        </SignedOut>
+        </>
+      )}
+   </>
   );
 };
 
 export default CustomizeProducts;
+
+

@@ -1,7 +1,9 @@
+import { getInformation } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
+const Footer = async () => {
+  const info = await getInformation();
   return (
     <div className="py-10 px-4 md:px-8 lg:px-16 xl:32 2xl:px-64 bg-white/50 backdrop-blur-lg  text-sm mt-24">
       {/* TOP */}
@@ -12,26 +14,16 @@ const Footer = () => {
             <div className="text-2xl tracking-wide">Style Savant</div>
           </Link>
           <p>
-            3252 Winding Way, Central Plaza, Willowbrook, CA 90210, United
-            States
+            {info.address}
           </p>
-          {/* <span className="font-semibold">hello@wrap-up.dev</span>
-          <span className="font-semibold">+1 234 567 890</span>
-          <div className="flex gap-6">
-            <Image src="/facebook.png" alt="" width={16} height={16} />
-            <Image src="/instagram.png" alt="" width={16} height={16} />
-            <Image src="/youtube.png" alt="" width={16} height={16} />
-            <Image src="/pinterest.png" alt="" width={16} height={16} />
-            <Image src="/x.png" alt="" width={16} height={16} />
-          </div> */}
         </div>
         <div className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-8">
           <Link href="/wrapup">
             <div className="text-2xl tracking-wide">Wrap Up</div>
           </Link>
           
-          <span className="font-semibold">Wrapupwithstyle@gmail.com</span>
-          <span className="font-semibold">+234 907 722 7233</span>
+          <span className="font-semibold">{info.wrapUpEmail}</span>
+          <span className="font-semibold">{info.wrapUpPhoneNumber}</span>
           <div className="flex gap-6">
             <Image src="/facebook.png" alt="" width={16} height={16} />
             <Image src="/instagram.png" alt="" width={16} height={16} />
@@ -44,8 +36,8 @@ const Footer = () => {
           <Link href="/services">
             <div className="text-2xl tracking-wide">Styles by Mini Mazamaza</div>
           </Link>
-          <span className="font-semibold">Mazamazaamina@gmail.com</span>
-          <span className="font-semibold">+234 806 663 2289</span>
+          <span className="font-semibold">{info.servicesEmail}</span>
+          <span className="font-semibold">{info.servicesPhoneNumber}</span>
           <div className="flex gap-6">
             <Image src="/facebook.png" alt="" width={16} height={16} />
             <Image src="/instagram.png" alt="" width={16} height={16} />
@@ -89,7 +81,7 @@ const Footer = () => {
           </div>
         </div> */}
         {/* RIGHT */}
-        <div className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-8">
+        <div className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-4">
           <h1 className="font-medium text-lg">SUBSCRIBE</h1>
           <p>
             Be the first to get the latest news about trends, promotions, and
@@ -103,14 +95,13 @@ const Footer = () => {
             />
             <button className="w-1/4 bg-primary text-white">JOIN</button>
           </div>
-          {/* <span className="font-semibold">Secure Payments</span>
+          <span className="font-semibold">Secure Payments</span>
           <div className="flex justify-between">
-            <Image src="/discover.png" alt="" width={40} height={20} />
-            <Image src="/skrill.png" alt="" width={40} height={20} />
-            <Image src="/paypal.png" alt="" width={40} height={20} />
+            <Image src="/paystack.png" alt="" width={40} height={20} />
             <Image src="/mastercard.png" alt="" width={40} height={20} />
             <Image src="/visa.png" alt="" width={40} height={20} />
-          </div> */}
+            <Image src="/verve.png" alt="" width={50} height={20} />
+          </div>
         </div>
       </div>
       {/* BOTTOM */}
@@ -119,7 +110,7 @@ const Footer = () => {
         <div className="flex flex-col gap-8 md:flex-row">
           <div className="">
             <span className="text-gray-500 mr-4">Language</span>
-            <span className="font-medium">United States | English</span>
+            <span className="font-medium">Nigeria | English</span>
           </div>
           <div className="">
             <span className="text-gray-500 mr-4">Currency</span>
