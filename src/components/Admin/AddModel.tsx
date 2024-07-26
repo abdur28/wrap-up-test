@@ -49,12 +49,7 @@ const AddModal = ({type, setIsAddOpen}: any) => {
         setIsAddOpen(false);
     };
         
-    
-    
 
-    
-    console.log(type);
-    console.log(setIsAddOpen);
     return (
         <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-20">
             <div className="w-[700px] h-[500px] bg-white rounded-md p-4 mt-20 overflow-y-auto">
@@ -150,8 +145,10 @@ const AddModal = ({type, setIsAddOpen}: any) => {
                                 </div>
                                 
                                 <div className="flex flex-row gap-4">
-                                    {colors.map((color: string) => (
-                                        <div className="flex flex-row">
+                                    {colors.map((color: string, index: number) => (
+                                        <div className="flex flex-row"
+                                        key={index}
+                                        >
                                             <div
                                             key={color}
                                             style={{ backgroundColor: color }}
