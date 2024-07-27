@@ -33,7 +33,9 @@ export const useCart = create<CartState>((set) => ({
     getCart: async () => {
         set((state) => ({ ...state, isLoading: true }));
         try {
-            const response = await fetch("/api/action/get-cart");
+            const response = await fetch("/api/action/get-cart", {
+                cache: "no-store",
+            });
             const cart = await response.json();
             const subtotal = cart.cart?.reduce(
                 (acc: number, item: CartItem) => acc + item.price * item.quantity,
@@ -51,6 +53,7 @@ export const useCart = create<CartState>((set) => ({
         set((state) => ({ ...state, isLoading: true }));
         try {
             const response = await fetch("/api/action/get-available-items", {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -116,6 +119,7 @@ export const useCart = create<CartState>((set) => ({
         try {
             set((state) => ({ ...state, isLoading: true }));
             await fetch("/api/action/remove-item", {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

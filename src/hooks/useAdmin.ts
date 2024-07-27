@@ -18,6 +18,8 @@ type AdminState = {
     deleteReview: ({id}: {id: string}) => void;
 };
 
+export const dynamic = 'force-dynamic'
+
 export const useAdmin = create<AdminState>((set) => ({
     services: [],
     message: "",
