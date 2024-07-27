@@ -2,10 +2,9 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import client from '@/lib/mongodb'
-import { unstable_noStore as noStore } from "next/cache";
 
+export const revalidate = 0;
 export async function POST(req: Request) {
-  noStore();
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
 
@@ -44,6 +43,7 @@ export async function POST(req: Request) {
     }) as WebhookEvent
   } catch (err) {
     console.error('Error verifying webhook:', err);
+    
     return new Response('Error occured', {
       status: 400
     })

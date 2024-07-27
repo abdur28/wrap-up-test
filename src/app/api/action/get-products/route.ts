@@ -2,6 +2,7 @@ import client from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import { unstable_noStore as noStore } from "next/cache";
 
+export const revalidate = 0;
 export const GET = async (req: Request) => {
     noStore();
     try {

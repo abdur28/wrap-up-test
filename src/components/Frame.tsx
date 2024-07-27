@@ -44,10 +44,8 @@ const Frame = ({ image, introduction, paragraphs }: FrameProps) => {
         >
           <Suspense fallback='Loading...'>
               <Image
-                unoptimized
                 src={image}
                 alt=""
-                quality={100}
                 width={500}
                 height={500}
                 className="smooth-edges w-full aspect-square object-cover h-auto"

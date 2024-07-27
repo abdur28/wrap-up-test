@@ -130,7 +130,7 @@ export const updateInfo = async (prevState: any, formData: any) => {
         const mongoClient = await client
         const db = mongoClient.db("Mazamaza-shop")
         const collection = db.collection("information")
-        await collection.updateOne({ _id: new mongoose.Types.ObjectId('669fe7362a75a024995e2097') }, { $set: allData })
+        await collection.updateOne({ _id: new mongoose.Types.ObjectId('66a459353354bfbdbe70cea4') }, { $set: allData })
         return
     } catch (error) {
         console.log(error)
