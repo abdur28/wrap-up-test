@@ -197,8 +197,10 @@ const AddModal = ({type, setIsAddOpen}: any) => {
                                 </div>
                                 
                                 <div className="flex flex-row gap-4">
-                                    {sizes.map((size: string) => (
-                                        <div className="flex flex-row">
+                                    {sizes.map((size: string, index: number) => (
+                                        <div className="flex flex-row"
+                                        key={index}
+                                        >
                                             <div
                                             key={size}
                                             className="text-lg"

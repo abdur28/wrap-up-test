@@ -66,7 +66,7 @@ const Navbar = ({admin}: {admin: boolean}) => {
                         <Image src="/logo.png" alt="" width={30} height={30} />
                         
                     </Link>
-                    <Link href={'/wrapup'}  className="font-Tangerine text-2xl">Style Savant</Link>
+                    <Link href={'/'}  className="font-Tangerine text-2xl">Style Savant</Link>
                     </div>
                     <Link href={'/wrapup'} >Wrap Up</Link>
                     <Link href="/services"  >Sevices</Link>

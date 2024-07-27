@@ -6,13 +6,15 @@ import ProductList from "@/components/ProductList"
 import Services from "@/components/Services"
 import SingleFaq from "@/components/SIngleFaq"
 import Testimonials from "@/components/Testimonials"
-import { getApprovedReviews, getInformation } from "@/lib/data"
+import { getApprovedReviews, getInformation, getServices } from "@/lib/data"
 import Image from "next/image"
 
 const HomePage = async () => {
   const info = await getInformation()
   const approvedReviews = await getApprovedReviews()
   const reviews = JSON.stringify(approvedReviews)
+  const services = await getServices();
+  const servicesJson = JSON.stringify(services)
 
   return (
     <div className='w-screen overflow-hidden'>
@@ -24,7 +26,7 @@ const HomePage = async () => {
             More
         </button> */}
       </div>  
-      <Services homeText={info.servicesHomeText}/>
+      <Services servicesAsString={servicesJson} homeText={info.servicesHomeText}/>
       <FeaturedProducts homeText={info.wrapUpHomeText}/>
             <div className="flex md:flex-row flex-col mt-20">
                 <div className="flex flex-col md:w-1/2 px-16 pt-7">
@@ -55,7 +57,7 @@ const HomePage = async () => {
         <div className="rounded-2xl border-2 border-gray-700 w-20 h-8 text-sm flex justify-center items-center">
             FAQS
         </div>
-        <div className="flex flex-col items-center gap-5 mt-10">
+        <div className="flex flex-col items-center  gap-5 mt-10">
           {info.faqs.map((faq: any, idx: number) => (
             <SingleFaq key={idx} faqs={faq} />
           ))}
