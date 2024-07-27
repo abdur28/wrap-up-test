@@ -8,6 +8,9 @@ cloudinary.v2.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+export const revalidate = 0;
+export const dynamic = 'force-dynamic'
+
 export const POST = async (req: Request) => {
     noStore();
     try {

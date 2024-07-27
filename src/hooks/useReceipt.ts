@@ -13,6 +13,7 @@ export const useReceipt = create<ReceiptsState>((set) => ({
         set({ isLoading: true });
         try {
             const response = await fetch("/api/action/get-receipts", {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

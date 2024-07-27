@@ -6,9 +6,11 @@ import client from "./mongodb";
 import mongoose from "mongoose";
 import { getUser } from "./data";
 import nodemailer from 'nodemailer';
+import { unstable_noStore as noStore } from "next/cache";
 
 export const getCart = async (prevState: any, formData: any) => {
     try {
+        noStore();
         const currentUser = await auth();
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");

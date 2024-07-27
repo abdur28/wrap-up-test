@@ -4,6 +4,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import { NextResponse } from "next/server";
 
 export const revalidate = 0;
+export const dynamic = 'force-dynamic'
 export const POST = async (req: Request) => {
     noStore();
     try {

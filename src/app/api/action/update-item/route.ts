@@ -2,6 +2,8 @@ import client from "@/lib/mongodb";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 export const POST = async (req: Request) => {
     try {
         const { type, id, data } = await req.json();

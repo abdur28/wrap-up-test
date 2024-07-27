@@ -110,6 +110,7 @@ export const useAdmin = create<AdminState>((set) => ({
         set({ isLoading: true });
         try {
             const response = await fetch("/api/action/get-receipts", {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -141,6 +142,7 @@ export const useAdmin = create<AdminState>((set) => ({
     approveReview: async ({id}: {id: string}) => {
         try {
             const response = await fetch("/api/action/approve-review", {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -75,6 +75,7 @@ export const useCart = create<CartState>((set) => ({
 
             set((state) => ({ ...state, isLoading: true }));
             await fetch("/api/action/add-to-cart", {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -97,6 +98,7 @@ export const useCart = create<CartState>((set) => ({
         try {
             set((state) => ({ ...state, isLoading: true }));
             await fetch("/api/action/add-to-cart", {
+                cache: "no-store",
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

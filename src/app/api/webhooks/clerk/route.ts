@@ -3,6 +3,8 @@ import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import client from '@/lib/mongodb'
 
+
+export const dynamic = 'force-dynamic'
 export const revalidate = 0;
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
