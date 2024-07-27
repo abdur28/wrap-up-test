@@ -7,7 +7,6 @@ import CartModal from "../CartModal";
 import { useCart } from "@/hooks/useCart";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import OrderModal from "../OrderModal";
-import AddReviewModal from "../AddReviewModel";
 
 
 const NavIcons = ({ isLoggedIn=false, setShowReviewModal }: { isLoggedIn: boolean, setShowReviewModal: React.Dispatch<React.SetStateAction<boolean>> }) => {

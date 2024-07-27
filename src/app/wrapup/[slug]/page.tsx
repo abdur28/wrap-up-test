@@ -1,12 +1,8 @@
 
-// import Reviews from "@/components/Reviews";
-// import { wixClientServer } from "@/lib/wixClientServer";
-import Add from "@/components/Add";
 import CustomizeProducts from "@/components/CustomizeProducts";
 import ProductImages from "@/components/ProductImages";
 import { getProductById } from "@/lib/data";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
 
@@ -14,6 +10,10 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
 
   const id = params.slug;
   const product = await getProductById(id);
+
+  if (!product) {
+    notFound();
+  }
 
 
   return (

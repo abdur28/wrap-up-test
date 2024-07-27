@@ -1,10 +1,6 @@
 'use client';
 
-import Image from "next/image";
-import InfiniteCarousel from "./InfiniteCarousel";
-import ServiceCard from "./ServiceCard";
 import ReviewCard from "./ReviewCard";
-import ReviewCarousel from "./ReviewCarousel";
 import Marquee from "./magicui/marquee";
 import { useEffect, useState } from "react";
 

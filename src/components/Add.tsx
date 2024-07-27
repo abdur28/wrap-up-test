@@ -1,9 +1,8 @@
 'use client';
 
 import { useCart } from "@/hooks/useCart";
-import { RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 
 

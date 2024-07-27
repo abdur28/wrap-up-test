@@ -1,9 +1,5 @@
 import Image from "next/image";
-import BlurredText from "@/components/BlurredText";
 import HowItWorks from "@/components/HowItWorks";
-import { Suspense } from "react";
-import Skeleton from "@/components/Skeleton";
-import Filter from "@/components/Filter";
 import ServiceCard from "@/components/ServiceCard";
 import Frame from "@/components/Frame";
 import { getInformation, getServices } from "@/lib/data";

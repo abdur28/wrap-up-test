@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import './addReviewModel.scss'
-import Alert from "./Alert";
 import { useAlert } from "@/hooks/useAlert";
 
 const AddReviewModal = ({setShowReviewModal, setAlert}: {setShowReviewModal: React.Dispatch<React.SetStateAction<boolean>>, setAlert: React.Dispatch<React.SetStateAction<any>>}) => {

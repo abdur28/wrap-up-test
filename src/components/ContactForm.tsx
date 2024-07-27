@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import "./contactForm.scss"
-import { wrap } from "module";
+import "./contactForm.scss";
 import Alert from "./Alert";
 import { useAlert } from "@/hooks/useAlert";
 import { sendEmail } from "@/lib/action";

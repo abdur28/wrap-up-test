@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const variants = {
   open: {
@@ -28,7 +27,6 @@ const itemVariants = {
 };
 
 const Links = ({ setOpen, admin }: { setOpen: React.Dispatch<React.SetStateAction<boolean>>, admin: boolean }) => {
-  const location = usePathname();
   const items = [ "Services", "Contact"];
 
   return (

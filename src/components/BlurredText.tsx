@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useAnimation, inView } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const BlurredText = ({ text }: { text: string }) => {
     

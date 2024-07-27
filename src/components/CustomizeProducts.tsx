@@ -1,7 +1,6 @@
 "use client";
 
 import { useCart } from "@/hooks/useCart";
-import { color } from "framer-motion";
 import { useEffect, useState } from "react";
 import Add from "./Add";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
