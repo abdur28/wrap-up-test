@@ -2,8 +2,10 @@ import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import client from "./mongodb";
 import mongoose from "mongoose";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const getUser = async () => {
+    noStore();
     const { userId } = auth();
     const mongoClient = await client;
     const db = mongoClient.db("Mazamaza-shop");
@@ -12,6 +14,7 @@ export const getUser = async () => {
 };
 
 export const isAdmin = async () => {
+    noStore();
     const { userId } = auth();
     const mongoClient = await client;
     const db = mongoClient.db("Mazamaza-shop");
@@ -23,6 +26,7 @@ export const isAdmin = async () => {
 };
 
 export const getInformation = async () => {
+    noStore();
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");
@@ -34,6 +38,7 @@ export const getInformation = async () => {
     }
 }
 export const getServices = async () => {
+    noStore();
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");
@@ -46,6 +51,7 @@ export const getServices = async () => {
 }
 
 export const getServiceById = async (id: string) => {
+    noStore();
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");
@@ -58,6 +64,7 @@ export const getServiceById = async (id: string) => {
 }
 
 export const getProducts = async () => {
+    noStore();
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");
@@ -70,6 +77,7 @@ export const getProducts = async () => {
 }
 
 export const getProductById = async (id: string) => {
+    noStore();
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");
@@ -82,6 +90,7 @@ export const getProductById = async (id: string) => {
 }
 
 export const getReceiptById = async (plainReceiptId: string) => {
+    noStore();
     try {
         const receiptId = Number(plainReceiptId)
         const mongoClient = await client;
@@ -95,6 +104,7 @@ export const getReceiptById = async (plainReceiptId: string) => {
 }
 
 export const getApprovedReviews = async () => {
+    noStore();
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");
@@ -107,6 +117,7 @@ export const getApprovedReviews = async () => {
 }
 
 export const getCart = async () => {
+    noStore();
     try {
         const user = await auth();
         if (!user) {

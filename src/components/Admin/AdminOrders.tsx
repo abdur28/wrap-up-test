@@ -1,10 +1,7 @@
 'use client'
 
 import { useAdmin } from "@/hooks/useAdmin";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import AddModal from "./AddModel";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const AdminOrders = () => {

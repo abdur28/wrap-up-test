@@ -3,6 +3,7 @@
 import Image from "next/image";
 import "./serviceCard.scss";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface CardProps {
   name: string;
@@ -13,9 +14,30 @@ interface CardProps {
 }
 
 const ServiceCard: React.FC<CardProps> = ({ name, image, shortDescription, price, id }) => {
+  const itemVariants = {
+    end: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5
+      },
+    },
+    intial: {
+      y: 50,
+      opacity: 0,
+      scale: 0
+    },
+  };
+
   const router = useRouter();
   return (
-    <div className="card  flex flex-col bg-secondary"
+    <motion.div 
+    variants={itemVariants}
+    initial="intial"
+    whileInView={"end"}
+    viewport={{ once: true }}
+    className="card  flex flex-col bg-secondary"
     onClick={() => router.push(`/services/${id}`)}>
         <div className="flex h-1/2">
           <Image
@@ -41,7 +63,7 @@ const ServiceCard: React.FC<CardProps> = ({ name, image, shortDescription, price
         </div>
         
       </div>
-    </div>
+    </motion.div>
   );
 }
   

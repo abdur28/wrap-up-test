@@ -1,5 +1,6 @@
 import cloudinary from "cloudinary";
 import { NextResponse } from "next/server";
+import { unstable_noStore as noStore } from "next/cache";
 
 cloudinary.v2.config({
     cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -8,6 +9,7 @@ cloudinary.v2.config({
 });
 
 export const POST = async (req: Request) => {
+    noStore();
     try {
         const { urls } = await req.json();  
         const publicIds = urls.map((url: string) => url.split("/").pop()?.split(".")[0]);

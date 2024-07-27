@@ -2,8 +2,10 @@
 import client from "@/lib/mongodb";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const GET = async (req: Request) => {
+    noStore();
     try {
         const  userId  = auth().userId;
         const mongoClient = await client;

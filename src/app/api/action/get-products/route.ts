@@ -1,7 +1,9 @@
 import client from "@/lib/mongodb";
 import { NextResponse } from "next/server";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const GET = async (req: Request) => {
+    noStore();
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");

@@ -5,6 +5,7 @@ import selectAnimation from '../../public/select-animation.json';
 import fillForm from '../../public/fill-form.json';
 import dialogue from '../../public/dialogue.json';
 import confirm from '../../public/confirm.json';
+import { motion } from 'framer-motion';
 
 const HowItWorks = () => {
     const options = [
@@ -30,17 +31,39 @@ const HowItWorks = () => {
         }
     ]
 
+    const itemVariants = {
+        end: {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          transition: {
+            duration: 0.5
+          },
+        },
+        intial: {
+          y: 50,
+          opacity: 0,
+          scale: 0
+        },
+      };
+
     return (
-        <div className="h-[90vh] md:h-[110vh] w-screen overflow-hidden ">
-                <div className="flex h-full flex-col gap-10 items-center justify-center">
+        <div className="my-40 w-screen overflow-hidden ">
+                <div className="flex h-full flex-col gap-24 items-center justify-center">
                     <div>
                         <h1 className="text-3xl md:text-4xl font-Satoshi">How it works ?</h1>
                     </div>
-                    <div className='flex flex-col lg:flex-row gap-10 lg:gap-24'>
+                    <motion.div 
+                    className='flex flex-col lg:justify-start lg:items-start lg:flex-row gap-24 lg:gap-24'>
                         {options.map((option) => (
-                            <div className='flex flex-row lg:flex-col gap-5 ' key={option.id}>
-                                <p className='text-lg flex justify-center items-center lg:text-3xl font-Satoshi'>{option.id}.</p>
-                                <div className='w-[60px] lg:w-[100px] flex lg:ml-10'>  
+                            <motion.div 
+                            variants={itemVariants}
+                            initial={"intial"}
+                            whileInView={"end"}
+                            viewport={{ once: true }}
+                            className='flex justify-center items-center flex-col gap-5 ' key={option.id}>
+                                {/* <p className='text-lg flex justify-center items-center lg:text-3xl font-Satoshi'>{option.id}.</p> */}
+                                <div className='w-[120px] lg:w-[170px] lg:h-[170px] flex '>  
                                     <Lottie 
                                         animationData={option.animation} 
                                         autoPlay={true}
@@ -48,12 +71,12 @@ const HowItWorks = () => {
                                         height={100}
                                         loop={true} />
                                 </div>
-                                <p className='text-md font-Satoshi flex lg:text-lg justify-center items-center'>
+                                <p className='text-md font-Satoshi text-center flex text-lg w-[200px] lg:text-2xl lg:w-[200px] justify-center items-center'>
                                     {option.name}
                                 </p>    
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                     
                 </div>    
             </div>

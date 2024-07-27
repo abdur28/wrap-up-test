@@ -2,8 +2,10 @@ import client from "@/lib/mongodb";
 import { auth } from "@clerk/nextjs/server";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
+import { unstable_noStore as noStore } from "next/cache";
 
 export const POST = async (req: Request) => {
+    noStore();
    try {
     const { productId } = await req.json();
     const  userId  = auth().userId;

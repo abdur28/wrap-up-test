@@ -1,8 +1,10 @@
 import client from "@/lib/mongodb";
 import { auth } from "@clerk/nextjs/server";
+import { unstable_noStore as noStore } from "next/cache";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
+    noStore();
     try {
         const { productId, productName, productImage, itemId, color, size, quantity, price } = await req.json();
         let item = {};

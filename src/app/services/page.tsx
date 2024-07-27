@@ -38,25 +38,7 @@ const Services = async () => {
                     <BlurredText text='Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum sint at porro animi quos repellat molestias ea mollitia iusto, quia nulla reprehenderit omnis? Possimus officia quia praesentium, voluptate odit ad?' />
                 </div>    
             </div> */}
-            <div className="flex flex-col md:flex-row pt-40">
-                <div className="md:w-1/2 w-full justify-center items-center lg:p-20 md:p-12 p-10">
-                    <Frame image={info?.servicesImage}/>
-                </div>
-                <div className="font-normal text-center text-base md:text-start md:px-0 px-12 md:pr-20  md:w-1/2 w-full my-auto ">
-                    <div className="block md:hidden">
-                        <p className="text-3xl font-Satoshi font-bold mb-6">{info?.servicesIntroduction}<span className="animate-wave">👋</span></p>
-                    </div>
-                    <p className="hidden md:block text-3xl font-Satoshi  mb-6">{info?.servicesIntroduction}
-                        <span className="animate-wave">👋</span>
-                    </p>
-            
-                    {paragraphs?.map((paragraph: string, index: number) => ( 
-                        <p key={index} className="mb-4">
-                        {paragraph}
-                        </p>
-                    ))}
-                </div>
-            </div>
+            <Frame image={info?.servicesImage} introduction={info?.servicesIntroduction} paragraphs={paragraphs} />
             <HowItWorks/>
             <div className="overflow-hidden flex flex-col gap-20 md:px-20 md:pb-20 justify-center items-center">
                 <div className="flex w-full justify-center items-center">

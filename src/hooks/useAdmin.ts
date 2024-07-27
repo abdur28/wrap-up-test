@@ -28,7 +28,9 @@ export const useAdmin = create<AdminState>((set) => ({
     getServices: async () => {
         set({ isLoading: true });
         try {
-            const response = await fetch("/api/action/get-services");
+            const response = await fetch("/api/action/get-services",{
+                cache: "no-store"
+            });
             const services = await response.json();
             set({ services: services.services, isLoading: false });
             return services;
@@ -40,7 +42,9 @@ export const useAdmin = create<AdminState>((set) => ({
     getProducts: async () => {
         set({ isLoading: true });
         try {
-            const response = await fetch("/api/action/get-products");
+            const response = await fetch("/api/action/get-products",{
+                cache: "no-store"
+            });
             const products = await response.json();
             set({ products: products.products, isLoading: false });
             return products;
@@ -121,7 +125,9 @@ export const useAdmin = create<AdminState>((set) => ({
     getReviews: async () => {
         set({ isLoading: true });
         try {
-            const response = await fetch("/api/action/get-reviews");
+            const response = await fetch("/api/action/get-reviews",{
+                cache: "no-store"
+            });
             const res = await response.json();
             set({ reviews: res.reviews, isLoading: false });
             return res;
