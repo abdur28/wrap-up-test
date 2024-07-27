@@ -33,7 +33,7 @@ export default function RootLayout({
         <body
         className={inter.className}>
           <NavWrapper/>
-          {/* <Canvas/> */}
+          <Canvas/>
           {children}
           <Footer/>
         </body>
