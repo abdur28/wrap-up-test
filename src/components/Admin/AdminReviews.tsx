@@ -5,8 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const AdminReviews = () => {
-    const { reviews, getReviews, deleteReview, approveReview } = useAdmin();
-    const [isLoading, setIsLoading] = useState(false);
+    const { reviews, getReviews, deleteReview, approveReview, isLoading } = useAdmin();
     const [deletedItem , setDeletedItem] = useState<any>();
     const [approvedItemIndex , setApprovedItemIndex] = useState<any>([]);
 
@@ -74,7 +73,7 @@ const AdminReviews = () => {
                 </div>
                 <div className="h-[440px] overflow-y-auto">
                 <div className="flex flex-col ">
-                {reviews.map((review: any, idx: number) => (
+                {reviews && reviews.map((review: any, idx: number) => (
                     <>
                     {deletedItem === review._id ? null : (
                         <div className="flex flex-row h-16 text-[12px] overflow-hidden px-2 border-y border-gray-300 items-center "
