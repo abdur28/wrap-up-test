@@ -12,8 +12,8 @@ import { getInformation, getServices } from "@/lib/data";
 const Services = async () => {
     const services = await getServices();
     const info = await getInformation();
-    const text = info.servicesDescription
-    const paragraphs = text.split('\n');
+    const text = info?.servicesDescription
+    const paragraphs = text?.split('\n');
 
     return(
         <div className="w-screen overflow-hidden">
@@ -44,17 +44,17 @@ const Services = async () => {
             </div> */}
             <div className="flex flex-col md:flex-row pt-40">
                 <div className="md:w-1/2 w-full justify-center items-center lg:p-20 md:p-12 p-10">
-                    <Frame image={info.servicesImage}/>
+                    <Frame image={info?.servicesImage}/>
                 </div>
                 <div className="font-normal text-center text-base md:text-start md:px-0 px-12 md:pr-20  md:w-1/2 w-full my-auto ">
                     <div className="block md:hidden">
-                        <p className="text-3xl font-Satoshi font-bold mb-6">{info.servicesIntroduction}<span className="animate-wave">👋</span></p>
+                        <p className="text-3xl font-Satoshi font-bold mb-6">{info?.servicesIntroduction}<span className="animate-wave">👋</span></p>
                     </div>
-                    <p className="hidden md:block text-3xl font-Satoshi  mb-6">{info.servicesIntroduction}
+                    <p className="hidden md:block text-3xl font-Satoshi  mb-6">{info?.servicesIntroduction}
                         <span className="animate-wave">👋</span>
                     </p>
             
-                    {paragraphs.map((paragraph: string, index: number) => ( 
+                    {paragraphs?.map((paragraph: string, index: number) => ( 
                         <p key={index} className="mb-4">
                         {paragraph}
                         </p>
@@ -69,7 +69,7 @@ const Services = async () => {
                     </div>
                 </div>
                 <div className="flex flex-col sm:flex-col md:flex-row gap-20 md:flex-wrap justify-center">
-                    {services.map((service, index) => (
+                    {services?.map((service, index) => (
                         <ServiceCard name={service.name} image={service.images[0]} shortDescription={service.shortDescription} price={service.price} id={service._id.toString()} key={index}/>
                     ))}
                 </div>

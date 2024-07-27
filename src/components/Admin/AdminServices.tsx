@@ -7,22 +7,20 @@ import AddModal from "./AddModel";
 import Link from "next/link";
 
 const AdminServices = () => {
-    const { services, getServices, deleteItem, deleteImage } = useAdmin();
-    const [isLoading, setIsLoading] = useState(false);
+    const { services, getServices, deleteItem, deleteImage, isLoading } = useAdmin();
     const [isAddOpen, setIsAddOpen] = useState(false);
     const [deletedItem , setDeletedItem] = useState<any>();
 
     useEffect(() => {
-        setIsLoading(true);
         getServices();
     }, []);
 
-    useEffect(() => {
-        if (services.length > 0) {
-            setIsLoading(false);
-            console.log(services);
-        }
-    }, [services]);
+    // useEffect(() => {
+    //     if (services.length > 0) {
+    //         setIsLoading(false);
+    //         console.log(services);
+    //     }
+    // }, [services]);
     return (
         <>
         { isLoading ? (<div className="flex items-center justify-center h-full w-full">

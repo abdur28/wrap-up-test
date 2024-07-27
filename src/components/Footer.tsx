@@ -14,7 +14,7 @@ const Footer = async () => {
             <div className="text-2xl tracking-wide">Style Savant</div>
           </Link>
           <p>
-            {info.address}
+            {info?.address}
           </p>
         </div>
         <div className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-8">
@@ -22,8 +22,8 @@ const Footer = async () => {
             <div className="text-2xl tracking-wide">Wrap Up</div>
           </Link>
           
-          <span className="font-semibold">{info.wrapUpEmail}</span>
-          <span className="font-semibold">{info.wrapUpPhoneNumber}</span>
+          <span className="font-semibold">{info?.wrapUpEmail}</span>
+          <span className="font-semibold">{info?.wrapUpPhoneNumber}</span>
           <div className="flex gap-6">
             <Image src="/facebook.png" alt="" width={16} height={16} />
             <Image src="/instagram.png" alt="" width={16} height={16} />
@@ -36,8 +36,8 @@ const Footer = async () => {
           <Link href="/services">
             <div className="text-2xl tracking-wide">Styles by Mini Mazamaza</div>
           </Link>
-          <span className="font-semibold">{info.servicesEmail}</span>
-          <span className="font-semibold">{info.servicesPhoneNumber}</span>
+          <span className="font-semibold">{info?.servicesEmail}</span>
+          <span className="font-semibold">{info?.servicesPhoneNumber}</span>
           <div className="flex gap-6">
             <Image src="/facebook.png" alt="" width={16} height={16} />
             <Image src="/instagram.png" alt="" width={16} height={16} />

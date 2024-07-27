@@ -11,14 +11,11 @@ const AdminReviews = () => {
     const [approvedItemIndex , setApprovedItemIndex] = useState<any>([]);
 
     useEffect(() => {
-        setIsLoading(true);
         getReviews();
-
     }, []);
 
     useEffect(() => {
         if (reviews.length > 0) {
-            setIsLoading(false);
             reviews.forEach((review: any, index: number) => {
                 if (review.approved) {
                     setApprovedItemIndex((prev: any) => [...prev, index]);

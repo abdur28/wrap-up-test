@@ -16,9 +16,9 @@ const NavIcons = ({ isLoggedIn=false, setShowReviewModal }: { isLoggedIn: boolea
   const { counter, getCart, cart } = useCart();
   const ref = useRef(null);
 
-  // useEffect(() => {
-  //   getCart();
-  // }, []);
+  useEffect(() => {
+    getCart();
+  }, []);
 
   useClickOutside(ref, () => {
     setIsCartOpen(false);

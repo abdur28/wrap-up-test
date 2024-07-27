@@ -27,11 +27,11 @@ type CartState = {
 export const useCart = create<CartState>((set) => ({
     cart: [],
     availableItems: [],
-    isLoading: true,
+    isLoading: false,
     subtotal: 0,
     counter: 0,
     getCart: async () => {
-        set({ isLoading: true });
+        set((state) => ({ ...state, isLoading: true }));
         try {
             const response = await fetch("/api/action/get-cart");
             const cart = await response.json();
@@ -48,7 +48,7 @@ export const useCart = create<CartState>((set) => ({
     },
 
     getAvailableItems: async (productId) => {
-        set({ isLoading: true });
+        set((state) => ({ ...state, isLoading: true }));
         try {
             const response = await fetch("/api/action/get-available-items", {
                 method: "POST",
@@ -59,7 +59,7 @@ export const useCart = create<CartState>((set) => ({
             });
             const res = await response.json();
             set({ availableItems: res.availableItems, isLoading: false });
-            
+            return res;
         } catch (err) {
             console.error("Failed to fetch cart:", err);
             set({ isLoading: false });
@@ -67,7 +67,9 @@ export const useCart = create<CartState>((set) => ({
     },
 
     addItem: async (item: CartItem) => {
+        set((state) => ({ ...state, isLoading: true }));
         try {
+
             set((state) => ({ ...state, isLoading: true }));
             await fetch("/api/action/add-to-cart", {
                 method: "POST",

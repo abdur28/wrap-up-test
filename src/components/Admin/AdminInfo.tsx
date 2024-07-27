@@ -8,7 +8,7 @@ import { CldUploadWidget } from 'next-cloudinary';
 
 const AdminInfo = ({infoAsString}: any) => {
 
-    const info = JSON.parse(infoAsString);
+    const info = JSON.parse(infoAsString || "{}");
 
     const formRef = useRef<any>();
     const [state, formAction] = useFormState(updateInfo, undefined);
@@ -271,7 +271,7 @@ const AdminInfo = ({infoAsString}: any) => {
                 </div>
                 <div className="flex flex-col gap-3">
                     <h2 className="text-xl font-semibold">FAQs</h2>
-                    {faqs?.map((faq, index) => (
+                    {faqs &&faqs.map((faq, index) => (
                     <div className="flex flex-col gap-2 "
                     key={index}
                     >
@@ -337,7 +337,11 @@ const AdminInfo = ({infoAsString}: any) => {
                         width={25}
                         height={25}
                         onClick={() => {
-                            setFaqs([...faqs, {question: "", answer: ""}]);
+                            if (faqs) {
+                                setFaqs([...faqs, { question: "", answer: "" }]);
+                            } else {
+                                setFaqs([{ question: "", answer: "" }]);
+                            }
                         }}
                         />
                     </div>

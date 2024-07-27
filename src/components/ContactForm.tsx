@@ -13,7 +13,7 @@ import { useFormState } from "react-dom";
 
 
 const ContactForm = ({infoAsString}: {infoAsString: string}) => {
-    const info = JSON.parse(infoAsString);
+    const info = JSON.parse(infoAsString||"{}");
     const [WrapUp, setWrapUp] = useState(true);
     const formRef = useRef<any>();
     const [form, setForm] = useState({ name: "", email: "", message: "" });

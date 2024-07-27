@@ -7,22 +7,14 @@ import { useEffect, useState } from "react";
 import AddModal from "./AddModel";
 
 const AdminProducts = () => {
-    const { products, getProducts, deleteItem, deleteImage } = useAdmin();
-    const [isLoading, setIsLoading] = useState(false);
+    const { products, getProducts, deleteItem, deleteImage, isLoading } = useAdmin();
     const [isAddOpen, setIsAddOpen] = useState(false);
     const [deletedItem , setDeletedItem] = useState<any>();
 
     useEffect(() => {
-        setIsLoading(true);
         getProducts();
     }, []);
 
-    useEffect(() => {
-        if (products.length > 0) {
-            setIsLoading(false);
-            // console.log(products);
-        }
-    }, [products]);
     return (
         <>
          { isLoading ? (
@@ -66,7 +58,7 @@ const AdminProducts = () => {
                 </div>
                 <div className="h-[440px] overflow-y-auto">
                 <div className="flex flex-col ">
-                {products.map((product, index) => (
+                {products && products.map((product, index) => (
                     <>
                         {deletedItem === product._id ? null : (
                             <div className="flex flex-row h-10 text-[12px] overflow-hidden px-2 border-y border-gray-300 items-center "

@@ -137,6 +137,25 @@ export const updateInfo = async (prevState: any, formData: any) => {
     }   
 }
 
+export const createInfo = async (prevState: any, formData: any) => {
+    const data = Object.fromEntries(formData);
+    const faqs = JSON.parse(data.faqs);
+    const allData = {
+        ...data,
+        faqs
+    }
+    try {
+        const mongoClient = await client
+        const db = mongoClient.db("Mazamaza-shop")
+        const collection = db.collection("information")
+        await collection.insertOne(allData)
+        return
+    } catch (error) {
+        console.log(error)
+    }   
+}
+
+
 export const addReview = async (prevState: any, formData: any) => {
     const {product, comment, rating} = Object.fromEntries(formData);
     

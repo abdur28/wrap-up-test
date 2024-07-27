@@ -8,21 +8,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const AdminOrders = () => {
-    const { getReceipts,  receipts } = useAdmin();
-    const [isLoading, setIsLoading] = useState(false);
+    const { getReceipts,  receipts, isLoading } = useAdmin();
     const router = useRouter();
 
     useEffect(() => {
-        setIsLoading(true);
         getReceipts();
     }, []);
 
-    useEffect(() => {
-        if (receipts.length > 0) {
-            setIsLoading(false);
-            console.log(receipts);
-        }
-    }, [receipts]);
     return (
         <>
         { isLoading ? (<div className="flex items-center justify-center h-full w-full">

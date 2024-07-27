@@ -12,7 +12,7 @@ const CartModal = ({setIsCartOpen}: {setIsCartOpen: React.Dispatch<React.SetStat
   const router = useRouter();
   useEffect(() => {
       getCart();
-  }, [getCart]);
+  }, []);
 
 
   // if (isLoading) {

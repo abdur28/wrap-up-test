@@ -21,13 +21,13 @@ const HomePage = async () => {
       {/* <Canvas /> */}
       <Hero />
       <div className="md:h-[calc(100vh-0px)] h-[70vh] flex justify-center items-center flex-col">
-        <BlurredText text={info.styleSavantHomeText} />
+        <BlurredText text={info?.styleSavantHomeText} />
         {/* <button className="mt-10 rounded-2xl ring-1 ring-black text-black w-max py-2 px-4 text-lg hover:bg-primary hover:text-white">
             More
         </button> */}
       </div>  
-      <Services servicesAsString={servicesJson} homeText={info.servicesHomeText}/>
-      <FeaturedProducts homeText={info.wrapUpHomeText}/>
+      <Services servicesAsString={servicesJson} homeText={info?.servicesHomeText}/>
+      <FeaturedProducts homeText={info?.wrapUpHomeText}/>
             <div className="flex md:flex-row flex-col mt-20">
                 <div className="flex flex-col md:w-1/2 px-16 pt-7">
                     <h1 className="md:text-4xl md:text-left text-2xl text-center font-Satoshi font-semibold">It&rsquo;s easy as 1,2,3!</h1>
@@ -58,7 +58,7 @@ const HomePage = async () => {
             FAQS
         </div>
         <div className="flex flex-col items-center  gap-5 mt-10">
-          {info.faqs.map((faq: any, idx: number) => (
+          {info?.faqs.map((faq: any, idx: number) => (
             <SingleFaq key={idx} faqs={faq} />
           ))}
         </div>
