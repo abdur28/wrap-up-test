@@ -45,7 +45,7 @@ const Navbar = ({admin}: {admin: boolean}) => {
                             </div>
                         </SignedIn>
                         <SignedOut>
-                            <div className="flex items-center gap-4 xl:gap-6 relative">
+                            <div className="flex  flex-row items-center gap-2 ">
                                 <>
                                     <NavIcons setShowReviewModal={setShowReviewModal} isLoggedIn={false} />
                                 </>

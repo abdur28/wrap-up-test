@@ -1,7 +1,6 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { User } from '@/lib/model'
 import client from '@/lib/mongodb'
 
 export async function POST(req: Request) {
@@ -59,7 +58,7 @@ export async function POST(req: Request) {
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");
-        const user = new User({
+        const user = {
             clerkId: id,
             firstName: evt.data.first_name,
             lastName: evt.data.last_name,
@@ -68,7 +67,7 @@ export async function POST(req: Request) {
             email: evt.data.email_addresses[0].email_address,
             isAdmin: false,
             cart: [],
-        })
+        }
         await db.collection("users").insertOne(user)
     } catch (err) {
         console.log(err)

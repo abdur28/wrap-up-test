@@ -5,7 +5,7 @@ import ServiceCard from "./ServiceCard"
 import Marquee from "./magicui/marquee";
 import { motion } from "framer-motion";
 
-const Services = async ({ homeText, servicesAsString }: { homeText: string, servicesAsString: string }) => {
+const Services = ({ homeText, servicesAsString }: { homeText: string, servicesAsString: string }) => {
     const services = JSON.parse(servicesAsString);
     
     const textVariants = {
