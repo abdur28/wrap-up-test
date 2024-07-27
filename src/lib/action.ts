@@ -53,7 +53,7 @@ export const addItem = async (prevState: any, formData: any) => {
             name,
             shortDescription,
             description,
-            featured,
+            featured: featured === "true" ? true : false,
             colors: colorArray,
             sizes: sizeArray,
             images: [],
