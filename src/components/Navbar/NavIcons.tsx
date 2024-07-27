@@ -13,12 +13,12 @@ import AddReviewModal from "../AddReviewModel";
 const NavIcons = ({ isLoggedIn=false, setShowReviewModal }: { isLoggedIn: boolean, setShowReviewModal: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
-  const { counter, getCart } = useCart();
+  const { counter, getCart, cart } = useCart();
   const ref = useRef(null);
 
-  useEffect(() => {
-    getCart();
-  }, []);
+  // useEffect(() => {
+  //   getCart();
+  // }, []);
 
   useClickOutside(ref, () => {
     setIsCartOpen(false);
