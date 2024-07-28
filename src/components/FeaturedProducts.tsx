@@ -1,4 +1,5 @@
 import ProductList from "./ProductList"
+import ViewAllButton from "./ViewAllButton"
 
 const FeaturedProducts = ({homeText}: {homeText: string}) => {
 
@@ -21,7 +22,9 @@ const FeaturedProducts = ({homeText}: {homeText: string}) => {
             <div className="md:px-16">
                 <ProductList featured={true}/>
             </div>
-            
+           <div className="mt-20">
+                <ViewAllButton location="wrapup"/>
+           </div>
         </div>
     )
 }

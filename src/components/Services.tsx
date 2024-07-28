@@ -4,10 +4,12 @@ import Image from "next/image";
 import ServiceCard from "./ServiceCard"
 import Marquee from "./magicui/marquee";
 import { motion } from "framer-motion";
+import ViewAllButton from "./ViewAllButton";
 
 const Services = ({ homeText, servicesAsString }: { homeText: string, servicesAsString: string }) => {
     const services = JSON.parse(servicesAsString);
-    
+   
+
     const textVariants = {
         initial: {
             x: -500,
@@ -24,11 +26,9 @@ const Services = ({ homeText, servicesAsString }: { homeText: string, servicesAs
     };
 
     return (
-        <div className="md:h-[calc(220vh-0px)]  ">
-            <motion.div className="flex  items-center flex-col "
-            initial={{ opacity: 0, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 , transition: { duration: 2 } }}
-            viewport={{ once: true, margin: '-200px'}}
+        <div className=" ">
+            <div className="flex  items-center flex-col "
+           
             >
                 {/* <div className="rounded-2xl border-2 w-20 h-8 text-sm flex justify-center items-center">
                     Services
@@ -50,18 +50,18 @@ const Services = ({ homeText, servicesAsString }: { homeText: string, servicesAs
                    {homeText}
                 </motion.div>
                
-                <div className="relative flex  w-[80%] my-48  flex-col items-center justify-center overflow-hidden  ">
+                <div className="relative flex  w-[80%] mt-48 mb-24  flex-col items-center justify-center overflow-hidden  ">
                         <Marquee pauseOnHover className="[--duration:25s] [--gap:2rem] ">
                             {services.map((service: any, idx: number) => (
-                                <ServiceCard key={idx} name={service.name} image={service.images[0]} shortDescription={service.shortDescription} price={service.price} id={service._id.toString()} />
+                                <ServiceCard key={idx} name={service.name} image={service.images[0]} shortDescription={service.shortDescription} price={service.price} id={service._id.toString()} home={true}/>
                             ))}
                         </Marquee>
                         {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-primary dark:from-background"></div>
                         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-primary dark:from-background"></div> */}
                 </div>
                 
-                
-            </motion.div>
+                <ViewAllButton location="services"/>
+            </div>
             
         </div>
         

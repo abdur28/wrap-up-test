@@ -48,7 +48,7 @@ const Services = async () => {
                 </div>
                 <div className="flex flex-col sm:flex-col md:flex-row gap-20 md:flex-wrap justify-center">
                     {services?.map((service, index) => (
-                        <ServiceCard name={service.name} image={service.images[0]} shortDescription={service.shortDescription} price={service.price} id={service._id.toString()} key={index}/>
+                        <ServiceCard name={service.name} image={service.images[0]} shortDescription={service.shortDescription} price={service.price} id={service._id.toString()} key={index} home={false}/>
                     ))}
                 </div>
             </div>
