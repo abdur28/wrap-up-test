@@ -106,7 +106,11 @@ const ContactForm = ({infoAsString}: {infoAsString: string}) => {
                     </motion.p>
                 </motion.div>
                 <div>
-                </div>
+              </div>
+              <div className="w-[250px] h-[40px]  flex flex-row rounded-2xl p-1 absolute -z-10">
+                <p className="text-gray-500 text-sm font-Satoshi text-center w-1/2">Wrap Up</p>
+                <p className="text-gray-500 text-sm font-Satoshi text-center w-1/2">Services</p>
+              </div>
             </div>
             <h1 className="text-3xl font-Satoshi font-semibold">Get in touch</h1>
             <form

@@ -32,7 +32,12 @@ export const useAdmin = create<AdminState>((set) => ({
         set({ isLoading: true });
         try {
             const response = await fetch("/api/action/get-services",{
-                cache: "no-store"
+                cache: "no-store",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ type: "all" }),
             });
             const services = await response.json();
             set({ services: services.services, isLoading: false });
@@ -46,7 +51,12 @@ export const useAdmin = create<AdminState>((set) => ({
         set({ isLoading: true });
         try {
             const response = await fetch("/api/action/get-products",{
-                cache: "no-store"
+                cache: "no-store",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ type: "all" }),
             });
             const products = await response.json();
             set({ products: products.products, isLoading: false });
@@ -130,7 +140,12 @@ export const useAdmin = create<AdminState>((set) => ({
         set({ isLoading: true });
         try {
             const response = await fetch("/api/action/get-reviews",{
-                cache: "no-store"
+                cache: "no-store",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ type: "all" }),
             });
             const res = await response.json();
             set({ reviews: res.reviews, isLoading: false });

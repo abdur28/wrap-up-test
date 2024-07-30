@@ -69,7 +69,7 @@ const Navbar = ({admin}: {admin: boolean}) => {
                     <Link href={'/'}  className="font-Tangerine text-2xl">Style Savant</Link>
                     </div>
                     <Link href={'/wrapup'} >Wrap Up</Link>
-                    <Link href="/services"  >Sevices</Link>
+                    <Link href="/services"  >Services</Link>
                     {/* <Link href="/">Deals</Link> */}
                     <Link href="/contact">Contact</Link>
                     <ClerkLoading>

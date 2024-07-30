@@ -5,16 +5,21 @@ import { unstable_noStore as noStore } from "next/cache";
 export const revalidate = 0;
 export const dynamic = 'force-dynamic'
 
-export const GET = async (req: Request) => {
+export const POST = async (req: Request) => {
     noStore();
     try {
-        const mongoClient = await client;
-        const db = mongoClient.db("Mazamaza-shop");
-        const products = await db
-            .collection("products")
-            .find({})
-            .toArray();
-        return NextResponse.json({ products });
+        const { type } = await req.json();
+        if (type === "all") {
+            const mongoClient = await client;
+            const db = mongoClient.db("Mazamaza-shop");
+            const products = await db
+                .collection("products")
+                .find({})
+                .toArray();
+            return NextResponse.json({ products });
+        } else {
+            return NextResponse.json({ error: "Invalid type" });
+        }
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: "Failed to fetch products" });

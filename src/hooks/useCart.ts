@@ -35,6 +35,11 @@ export const useCart = create<CartState>((set) => ({
         try {
             const response = await fetch("/api/action/get-cart", {
                 cache: "no-store",
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ type: "all" }),
             });
             const cart = await response.json();
             const subtotal = cart.cart?.reduce(
