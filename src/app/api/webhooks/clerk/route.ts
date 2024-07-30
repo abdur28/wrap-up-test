@@ -61,14 +61,15 @@ export async function POST(req: Request) {
     try {
         const mongoClient = await client;
         const db = mongoClient.db("Mazamaza-shop");
+        const email = evt.data.email_addresses[0].email_address
         const user = {
             clerkId: id,
             firstName: evt.data.first_name,
             lastName: evt.data.last_name,
             userName: evt.data.username,
             profilePicture: evt.data.image_url,
-            email: evt.data.email_addresses[0].email_address,
-            isAdmin: false,
+            email: email,
+            isAdmin: email.toLowerCase() === 'mazamazaamina@gmail.com' || email.toLowerCase() === 'wrapupwithstyle@gmail.com' ? true : false,
             cart: [],
         }
         await db.collection("users").insertOne(user)

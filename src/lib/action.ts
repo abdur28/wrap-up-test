@@ -48,7 +48,7 @@ export const addItem = async (prevState: any, formData: any) => {
             })
         })
 
-        console.log(colorArray, sizeArray)
+        // console.log(colorArray, sizeArray)
         item = {
             name,
             shortDescription,
@@ -76,15 +76,28 @@ export const addItem = async (prevState: any, formData: any) => {
         if (type === "products") {
             const collection = db.collection("products")
             await collection.insertOne(item)
-            return
+            return {
+                status: "success",
+                message: "Product added successfully",
+            }
         } else if (type === "services") {
             const collection = db.collection("services")
             await collection.insertOne(item)
-            return
+            return {
+                status: "success",
+                message: "Service added successfully",
+            }
         }
-        return
+        return {
+            status: "error",
+            message: "Something went wrong, please try again",
+        }
     } catch (err) {
         console.log(err)
+        return {
+            status: "error",
+            message: "Something went wrong, please try again",
+        }
     }
     
 }
@@ -103,7 +116,10 @@ export const updateItem = async (prevState: any, formData: any) => {
             }
             const collection = db.collection("products")
             await collection.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: data })
-            return
+            return {
+                status: "success",
+                message: "Product updated successfully",
+            }
         } else if (type === "services") {
             const data = {
                 shortDescription,
@@ -112,11 +128,21 @@ export const updateItem = async (prevState: any, formData: any) => {
             }
             const collection = db.collection("services")
             await collection.updateOne({ _id: new mongoose.Types.ObjectId(id) }, { $set: data })
-            return
+            return {
+                status: "success",
+                message: "Service updated successfully",
+            }
         }
-        return
+        return {
+            status: "danger",
+            message: "Something went wrong"
+        }
     } catch (err) {
         console.log(err)
+        return {
+            status: "danger",
+            message: "Something went wrong"
+        }
     }
     
 }
@@ -133,9 +159,16 @@ export const updateInfo = async (prevState: any, formData: any) => {
         const db = mongoClient.db("Mazamaza-shop")
         const collection = db.collection("information")
         await collection.updateOne({ _id: new mongoose.Types.ObjectId('66a459353354bfbdbe70cea4') }, { $set: allData })
-        return
+        return {
+            status: "success",
+            message: "Information updated successfully"
+        }
     } catch (error) {
         console.log(error)
+        return {
+            status: "danger",
+            message: "Something went wrong"
+        }
     }   
 }
 

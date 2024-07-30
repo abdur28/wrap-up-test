@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import { updateInfo } from "@/lib/action";
 import { CldUploadWidget } from 'next-cloudinary';
+import { useAlert } from "@/hooks/useAlert";
+import Alert from "../Alert";
 
 const AdminInfo = ({infoAsString}: any) => {
 
@@ -31,6 +33,7 @@ const AdminInfo = ({infoAsString}: any) => {
     const [openFaqs, setOpenFaqs] = useState<number>();
     const [uploadImage, setUploadImage] = useState<any>();
     const [loading, setLoading] = useState(false);
+    const { showAlert, hideAlert, text, type, show } = useAlert();
 
     useEffect(() => {
         if (uploadImage) {
@@ -65,12 +68,42 @@ const AdminInfo = ({infoAsString}: any) => {
         }
         formData.append("faqs", JSON.stringify(faqs));
         formAction(formData);
-        setLoading(false);
     }
+
+    useEffect(() => {
+        if (state) {
+            hideAlert();
+            if (state.status === "success"){
+                showAlert({
+                    text: "Information updated successfully",
+                    type: "success",
+                    show: true
+                });
+                setLoading(false);
+                setTimeout(() => {
+                hideAlert();
+                }, 5000);
+            
+            } else {
+
+                    showAlert({
+                        show: true,
+                        text: state.message,
+                        type: "danger",
+                    });
+                    setLoading(false);
+                    setTimeout(() => {
+                    hideAlert();    
+                    }, 5000);
+                    // router.refresh()
+            }
+        }
+    },[state])
     
 
     return (
         <>
+            {show && <Alert text={text} type={type} />}
            <form 
            ref={formRef}
            onSubmit={handleSubmit}

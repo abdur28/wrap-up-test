@@ -24,7 +24,7 @@ export default function RootLayout({
         <head>
           <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
           <meta name="theme-color" content="#000000"/>
-          <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+          <meta name="viewport" content="viewport-fit=cover, width=device-width, user-scalable=no"/>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
